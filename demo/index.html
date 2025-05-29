@@ -1,0 +1,305 @@
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>AstronomySVG</title>
+    <style>
+        .card-image svg {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1024px !important;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        :root {
+            --pico-font-size: 100% !important;
+        }
+
+        .example-tile {
+            display: grid;
+            grid-template-rows: auto auto;
+            margin-bottom: 1rem;
+        }
+
+        .example-tile .card-image {
+            grid-row: 1 / span 2;
+        }
+
+        .example-tile .card-title {
+            padding-left: 1rem;
+            font-weight: bold;
+            grid-column: 2;
+        }
+
+        .example-tile .card-text {
+            padding-left: 1rem;
+            grid-column: 2;
+        }
+
+        #timeLabel {
+            width: 5rem;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="pico.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body class="container">
+<header>
+    <h1>AstronomySVG</h1>
+    <span>Explore all the tiles in the AstronomySVG library. Adjust the time or location to see how they behave in real time.</span>
+</header>
+
+<main>
+    <article>
+        <form>
+            <div class="grid">
+                <div>
+                    <label for="datePicker">Date</label>
+                    <input type="date" id="datePicker"/>
+                </div>
+                <div>
+                    <label for="timeRange">Time</label>
+                    <div role="group" style="display: flex; align-items: center; gap: 1rem;">
+                        <input type="range" id="timeRange" min="0" max="1440" value="0" step="1"/>
+                        <output id="timeLabel">00:00</output>
+                        <button id="nowButton">Now</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <details>
+            <summary role="button" class="outline contrast">Location</summary>
+            <form>
+                <div class="grid">
+                    <label>
+                        Latitude:
+                        <input type="number" step="0.00001" id="latitudeInput">
+                    </label>
+                    <label>
+                        Longitude:
+                        <input type="number" step="0.00001" id="longitudeInput">
+                    </label>
+                </div>
+            </form>
+            <div id="map"></div>
+        </details>
+    </article>
+
+    <div class="grid">
+        <article>
+            <header>Sun</header>
+            <div class="example-tile">
+                <div class="card-image" id="drawSunAzimuth"></div>
+                <div class="card-title">Sun Azimuth</div>
+                <div class="card-text">
+                    Sun Azimuth is the angle between the Sun and the meridian of the Earth's equator.
+                </div>
+            </div>
+
+            <div class="example-tile">
+                <div class="card-image" id="drawSunAltitude"></div>
+                <div class="card-title">Sun Altitude</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+
+            <div class="example-tile">
+                <div class="card-image" id="drawSunAltitudePathSquare"></div>
+                <div class="card-title">Sun Altitude Path</div>
+                <div class="card-text">
+                    The Sun's path across the sky throughout the day,
+                    showing its position from sunrise to sunset and how high it climbs at noon.
+                </div>
+            </div>
+
+            <div class="example-tile">
+                <div class="card-image" id="drawSunAltitudePathRectangular"></div>
+                <div class="card-title">Sun Altitude Path (Wide)</div>
+                <div class="card-text">
+                    Wide version of Sun Altitude Path (twice as wide as the square version).
+                </div>
+            </div>
+
+            <div class="example-tile">
+                <div class="card-image" id="drawSunRiseTime"></div>
+                <div class="card-title">Sun Rise</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+
+            <div class="example-tile">
+                <div class="card-image" id="drawSunSettingTime"></div>
+                <div class="card-title">Sun Set</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <header>Mars</header>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsAzimuth"></div>
+                <div class="card-title">Mars Azimuth</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsAltitude"></div>
+                <div class="card-title">Mars Altitude</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsRiseTime"></div>
+                <div class="card-title">Mars Rise</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsSettingTime"></div>
+                <div class="card-title">Mars Set</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsVisibility"></div>
+                <div class="card-title">Mars Visibility</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+</body>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script type="module">
+    import {AstronomySVG} from "../dist/astronomy-svg.es.js";
+
+    const initialLatitude = 59.4;
+    const initialLongitude = 18.0;
+    let astronomySVG = AstronomySVG.initialize(initialLatitude, initialLongitude);
+
+    const latitudeInput = document.getElementById('latitudeInput');
+    const longitudeInput = document.getElementById('longitudeInput');
+    latitudeInput.value = initialLatitude;
+    longitudeInput.value = initialLongitude;
+    latitudeInput.addEventListener('input', onLocationChange);
+    longitudeInput.addEventListener('input', onLocationChange);
+
+    function updateInputs(latitude, longitude) {
+        latitudeInput.value = latitude.toFixed(5);
+        longitudeInput.value = longitude.toFixed(5);
+        onLocationChange();
+    }
+
+    const map = L.map('map').setView([initialLatitude, initialLongitude], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const marker = L.marker([initialLatitude, initialLongitude], {draggable: true}).addTo(map);
+
+    marker.on('dragend', function (_) {
+        const {lat, lng} = marker.getLatLng();
+        updateInputs(lat, lng);
+    });
+
+    map.on('click', function (e) {
+        const {lat, lng} = e.latlng;
+        marker.setLatLng([lat, lng]);
+        updateInputs(lat, lng);
+    });
+
+    function onLocationChange() {
+        const latitude = parseFloat(latitudeInput.value);
+        const longitude = parseFloat(longitudeInput.value);
+        if (!isNaN(latitude) && !isNaN(longitude)) {
+            marker.setLatLng([latitude, longitude]);
+            map.setView([latitude, longitude], map.getZoom());
+            astronomySVG.setLocation(latitude, longitude);
+            updateAllTilesWithTime(astronomySVG.getDate());
+        }
+    }
+
+    function updateAllTilesWithTime(referenceDate) {
+        astronomySVG.setDate(referenceDate);
+        document.getElementById('drawSunAzimuth').innerHTML = astronomySVG.drawAzimuth("Sun", 100);
+        document.getElementById('drawSunAltitude').innerHTML = astronomySVG.drawAltitude("Sun", 100);
+        document.getElementById('drawSunAltitudePathSquare').innerHTML = astronomySVG.drawSunAltitudePath(100, false);
+        document.getElementById('drawSunAltitudePathRectangular').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        document.getElementById('drawMarsAzimuth').innerHTML = astronomySVG.drawAzimuth("Mars", 100);
+        document.getElementById('drawMarsAltitude').innerHTML = astronomySVG.drawAltitude("Mars", 100);
+        document.getElementById('drawSunSettingTime').innerHTML = astronomySVG.drawCelestialBodySettingTime("Sun", 100);
+        document.getElementById('drawSunRiseTime').innerHTML = astronomySVG.drawCelestialBodyRiseTime("Sun", 100);
+        document.getElementById('drawMarsSettingTime').innerHTML = astronomySVG.drawCelestialBodySettingTime("Mars", 100);
+        document.getElementById('drawMarsRiseTime').innerHTML = astronomySVG.drawCelestialBodyRiseTime("Mars", 100);
+        document.getElementById('drawMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
+    }
+
+    const now = new Date();
+    const datePicker = document.getElementById('datePicker');
+    datePicker.value = now.toISOString().slice(0, 10);
+
+    const timeRange = document.getElementById('timeRange');
+    const timeLabel = document.getElementById('timeLabel');
+    const nowButton = document.getElementById('nowButton');
+
+    function minutesToHHMM(minutes) {
+        const hour = Math.floor(minutes / 60);
+        const minute = minutes % 60;
+        return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    }
+
+    function getMinutesSinceMidnight(referenceDate) {
+        return referenceDate.getHours() * 60 + referenceDate.getMinutes();
+    }
+
+    function updateTimeToNow() {
+        const now = new Date();
+        const nowMinutes = getMinutesSinceMidnight(now);
+        timeRange.value = nowMinutes;
+        timeLabel.textContent = minutesToHHMM(nowMinutes);
+        updateAllTilesWithTime(now);
+    }
+
+    nowButton.addEventListener('click', () => {
+        updateTimeToNow();
+    });
+    timeRange.addEventListener('input', () => {
+        timeLabel.value = minutesToHHMM(parseInt(timeRange.value, 10));
+        updateAllTilesWithTime(getReferenceDateFromForm());
+    });
+    datePicker.addEventListener('input', () => {
+        updateAllTilesWithTime(getReferenceDateFromForm());
+    });
+
+    function getReferenceDateFromForm() {
+        const [year, month, day] = datePicker.value.split('-').map(Number);
+        const minutes = parseInt(timeRange.value, 10);
+        const hour = Math.floor(minutes / 60);
+        const minute = minutes % 60;
+        return new Date(year, month - 1, day, hour, minute);
+    }
+
+    updateTimeToNow();
+</script>
+</html>
