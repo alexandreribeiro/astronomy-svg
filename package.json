@@ -14,7 +14,7 @@
     "universe",
     "saturn"
   ],
-  "homepage": "https://github.com/alexandreribeiro/astronomy-svg#readme",
+  "homepage": "https://alexandreribeiro.github.io/astronomy-svg",
   "bugs": {
     "url": "https://github.com/alexandreribeiro/astronomy-svg/issues"
   },
@@ -29,6 +29,7 @@
   "files": [
     "/dist",
     "/lib",
+    "/demo",
     "README.md",
     "LICENSE",
     "index.js"
@@ -38,7 +39,8 @@
     "watch": "vite",
     "test": "vitest --run",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare-docs": "npm run build && rm -rf docs && mkdir docs && mkdir docs/dist && cp -r dist/* docs/dist/ && cp README.md docs/ && cp -r demo docs/"
   },
   "dependencies": {
     "astronomyjs": "^0.1.8"
