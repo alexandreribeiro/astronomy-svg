@@ -26,7 +26,31 @@
   "author": "Alexandre Ribeiro",
   "type": "module",
   "main": "index.js",
+  "files": [
+    "/dist",
+    "/lib",
+    "README.md",
+    "LICENSE",
+    "index.js"
+  ],
   "scripts": {
-    "test": "npm run test"
+    "build": "vite build",
+    "watch": "vite",
+    "test": "vitest --run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "astronomyjs": "^0.1.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3",
+    "prettier-eslint": "^16.4.2",
+    "vite": "^6.3.5",
+    "vite-plugin-banner": "^0.8.1",
+    "vitest": "^3.1.4"
   }
 }
