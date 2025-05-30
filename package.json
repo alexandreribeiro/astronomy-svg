@@ -43,7 +43,7 @@
     "prepare-docs": "npm run build && rm -rf docs && mkdir docs && mkdir docs/dist && cp -r dist/* docs/dist/ && cp README.md docs/ && cp -r demo docs/"
   },
   "dependencies": {
-    "astronomyjs": "^0.1.8"
+    "astronomyjs": "^0.1.9"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
