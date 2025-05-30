@@ -6,6 +6,7 @@ import { drawCelestialBodyRiseTime } from "./lib/celestial-body-rise-time.js";
 import { drawCelestialBodySettingTime } from "./lib/celestial-body-set-time.js";
 import { drawCelestialBodyVisibility } from "./lib/celestial-body-visibility.js";
 import { drawCelestialBodyVisibilityMap } from "./lib/celestial-body-visibility-map.js";
+import { drawMultiCelestialBodyVisibilityMap } from "./lib/multi-celestial-body-visibility-map.js";
 
 export class AstronomySVG {
   constructor() {
@@ -59,6 +60,19 @@ export class AstronomySVG {
     return drawCelestialBodyVisibilityMap(
       this.astronomyJS,
       celestialBody,
+      width,
+      azimuthReference,
+    );
+  }
+
+  drawMultiCelestialBodyVisibilityMap(
+    celestialBodyList,
+    width,
+    azimuthReference,
+  ) {
+    return drawMultiCelestialBodyVisibilityMap(
+      this.astronomyJS,
+      celestialBodyList,
       width,
       azimuthReference,
     );
