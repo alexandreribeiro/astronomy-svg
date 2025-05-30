@@ -9,7 +9,7 @@
         }
 
         .container {
-            max-width: 1024px !important;
+            max-width: 960px !important;
             margin-left: auto;
             margin-right: auto;
             padding-left: 1rem;
@@ -146,6 +146,20 @@
                     Sun Altitude is the angle between the Sun and the horizon.
                 </div>
             </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawSunVisibilityMap"></div>
+                <div class="card-title">Sun Visibility Map</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawSunVisibilityMapRotated"></div>
+                <div class="card-title">Sun Visibility Map (Rotated)</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
         </article>
 
         <article>
@@ -185,13 +199,27 @@
                     Sun Altitude is the angle between the Sun and the horizon.
                 </div>
             </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsVisibilityMap"></div>
+                <div class="card-title">Mars Visibility Map</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsVisibilityMapRotated"></div>
+                <div class="card-title">Mars Visibility Map (Rotated)</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
         </article>
     </div>
 </main>
 </body>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script type="module">
-    import {AstronomySVG} from "../dist/astronomy-svg.es.js";
+    import {AstronomySVG} from "../index.js";
 
     const initialLatitude = 59.4;
     const initialLongitude = 18.0;
@@ -253,6 +281,11 @@
         document.getElementById('drawMarsSettingTime').innerHTML = astronomySVG.drawCelestialBodySettingTime("Mars", 100);
         document.getElementById('drawMarsRiseTime').innerHTML = astronomySVG.drawCelestialBodyRiseTime("Mars", 100);
         document.getElementById('drawMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
+        document.getElementById('drawMarsVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100);
+        document.getElementById('drawMarsVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100, 222);
+        document.getElementById('drawSunVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100);
+        document.getElementById('drawSunVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100, 222);
+
     }
 
     const now = new Date();
@@ -275,13 +308,15 @@
 
     function updateTimeToNow() {
         const now = new Date();
+        datePicker.value = now.toISOString().slice(0, 10);
         const nowMinutes = getMinutesSinceMidnight(now);
         timeRange.value = nowMinutes;
         timeLabel.textContent = minutesToHHMM(nowMinutes);
         updateAllTilesWithTime(now);
     }
 
-    nowButton.addEventListener('click', () => {
+    nowButton.addEventListener('click', (event) => {
+        event.preventDefault();
         updateTimeToNow();
     });
     timeRange.addEventListener('input', () => {
