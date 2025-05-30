@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-const u = {
+const d = {
   SOLAR_SYSTEM_OBJECT: "SOLAR_SYSTEM_OBJECT",
   GREENWICH_OBSERVATORY_COORDINATES: {
     LATITUDE: 51.476852,
@@ -81,7 +81,7 @@ const u = {
   NUMBERS_OF_ATTEMPT_TO_GET_POSITIONAL_EPHEMERIS: 5,
   DAYS_PER_JULIAN_CENTURY: 36525
 };
-class s {
+class n {
   static modDegrees(t) {
     for (; t < 0; )
       t = t + 360;
@@ -112,63 +112,63 @@ class s {
 }
 class m {
   static julianDate(t) {
-    return t / u.MS_PER_DAY + u.JULIAN_DAY_OFFSET;
+    return t / d.MS_PER_DAY + d.JULIAN_DAY_OFFSET;
   }
   static julianDateToDate(t) {
     return new Date(
-      (t - u.JULIAN_DAY_OFFSET) * u.MS_PER_DAY
+      (t - d.JULIAN_DAY_OFFSET) * d.MS_PER_DAY
     );
   }
   static julianDaysSinceEpoch2000(t) {
-    return t - u.JULIAN_DAY_2000;
+    return t - d.JULIAN_DAY_2000;
   }
   static julianCenturiesSinceEpoch2000(t) {
-    return this.julianDaysSinceEpoch2000(t) / u.DAYS_PER_JULIAN_CENTURY;
+    return this.julianDaysSinceEpoch2000(t) / d.DAYS_PER_JULIAN_CENTURY;
   }
   static meanSiderealTime(t) {
-    const e = this.julianDaysSinceEpoch2000(t), i = this.julianCenturiesSinceEpoch2000(t), r = 280.46061837 + 360.98564736629 * e + 387933e-9 * i * i - i * i * i / 3871e4;
-    return s.modDegrees(r);
+    const e = this.julianDaysSinceEpoch2000(t), i = this.julianCenturiesSinceEpoch2000(t), o = 280.46061837 + 360.98564736629 * e + 387933e-9 * i * i - i * i * i / 3871e4;
+    return n.modDegrees(o);
   }
 }
-class I {
+class M {
   constructor(t, e, i) {
     this.x = t, this.y = e, this.z = i;
   }
   minus(t) {
-    return new I(
+    return new M(
       this.x - t.x,
       this.y - t.y,
       this.z - t.z
     );
   }
 }
-class T {
+class b {
   constructor(t, e, i) {
     this.latitude = t, this.longitude = e, this.radius = i;
   }
   toDegrees() {
     let t = this.latitude, e = this.longitude;
-    return new T(
-      `${t < 0 ? "-" : ""}${s.padZero(0 | (t < 0 ? t = -t : t))}° ${s.padZero(0 | t % 1 * 60)}' ${s.padZero(0 | t * 60 % 1 * 60)}''`,
-      `${e < 0 ? "-" : ""}${s.padZero(0 | (e < 0 ? e = -e : e))}° ${s.padZero(0 | e % 1 * 60)}' ${s.padZero(0 | e * 60 % 1 * 60)}''`,
+    return new b(
+      `${t < 0 ? "-" : ""}${n.padZero(0 | (t < 0 ? t = -t : t))}° ${n.padZero(0 | t % 1 * 60)}' ${n.padZero(0 | t * 60 % 1 * 60)}''`,
+      `${e < 0 ? "-" : ""}${n.padZero(0 | (e < 0 ? e = -e : e))}° ${n.padZero(0 | e % 1 * 60)}' ${n.padZero(0 | e * 60 % 1 * 60)}''`,
       this.radius
     );
   }
   toHours() {
     let t = this.latitude, e = this.longitude;
-    return new T(
-      `${t < 0 ? "-" : ""}${s.padZero(0 | (t < 0 ? t = -t : t))}° ${s.padZero(0 | t % 1 * 60)}' ${s.padZero(0 | t * 60 % 1 * 60)}''`,
-      `${e < 0 ? "-" : ""}${s.padZero(0 | (e < 0 ? e = -e / 15 : e = e / 15))}h ${s.padZero(0 | e % 1 * 60)}m ${s.padZero(0 | e * 60 % 1 * 60)}s`,
+    return new b(
+      `${t < 0 ? "-" : ""}${n.padZero(0 | (t < 0 ? t = -t : t))}° ${n.padZero(0 | t % 1 * 60)}' ${n.padZero(0 | t * 60 % 1 * 60)}''`,
+      `${e < 0 ? "-" : ""}${n.padZero(0 | (e < 0 ? e = -e / 15 : e = e / 15))}h ${n.padZero(0 | e % 1 * 60)}m ${n.padZero(0 | e * 60 % 1 * 60)}s`,
       this.radius
     );
   }
 }
 class F {
   constructor(t, e) {
-    this.sphericalCoordinates = t || new T(
-      u.GREENWICH_OBSERVATORY_COORDINATES.LATITUDE,
-      u.GREENWICH_OBSERVATORY_COORDINATES.LONGITUDE,
-      u.GREENWICH_OBSERVATORY_COORDINATES.RADIUS
+    this.sphericalCoordinates = t || new b(
+      d.GREENWICH_OBSERVATORY_COORDINATES.LATITUDE,
+      d.GREENWICH_OBSERVATORY_COORDINATES.LONGITUDE,
+      d.GREENWICH_OBSERVATORY_COORDINATES.RADIUS
     ), this.solarSystemObject = e;
   }
   getRectangularObjectCentricCoordinatesForSolarSystemObject(t, e) {
@@ -182,13 +182,13 @@ class F {
     const i = this.getRectangularObjectCentricCoordinatesForSolarSystemObject(
       t,
       e
-    ), r = s.degreesToRadians(
+    ), o = n.degreesToRadians(
       this.solarSystemObject.axialTilt
     );
-    return new I(
+    return new M(
       i.x,
-      i.y * Math.cos(r) - i.z * Math.sin(r),
-      i.y * Math.sin(r) + i.z * Math.cos(r)
+      i.y * Math.cos(o) - i.z * Math.sin(o),
+      i.y * Math.sin(o) + i.z * Math.cos(o)
     );
   }
   getDistanceToSolarSystemObject(t, e) {
@@ -204,18 +204,18 @@ class F {
     const i = this.getRectangularEquatorialCoordinatesForSolarSystemObject(
       t,
       e
-    ), r = i.x > 0 && i.y < 0 ? 360 : i.x < 0 ? 180 : 0, n = s.radiansToDegrees(
+    ), o = i.x > 0 && i.y < 0 ? 360 : i.x < 0 ? 180 : 0, a = n.radiansToDegrees(
       Math.atan(i.y / i.x)
-    ) + r, a = s.radiansToDegrees(
+    ) + o, s = n.radiansToDegrees(
       Math.atan(
         i.z / Math.sqrt(
           Math.pow(i.x, 2) + Math.pow(i.y, 2)
         )
       )
     );
-    return new T(
+    return new b(
+      s,
       a,
-      n,
       this.getDistanceToSolarSystemObject(t, e)
     );
   }
@@ -223,46 +223,46 @@ class F {
     const i = this.getRectangularEquatorialCoordinatesForSolarSystemObject(
       t,
       e
-    ), r = i.x > 0 && i.y < 0 ? 360 : i.x < 0 ? 180 : 0, n = s.radiansToDegrees(
+    ), o = i.x > 0 && i.y < 0 ? 360 : i.x < 0 ? 180 : 0, a = n.radiansToDegrees(
       Math.atan(i.y / i.x)
-    ) + r, a = s.modDegrees(
-      this.getLocalSiderealTime(e) - n
-    ), c = s.radiansToDegrees(
+    ) + o, s = n.modDegrees(
+      this.getLocalSiderealTime(e) - a
+    ), c = n.radiansToDegrees(
       Math.atan(
         i.z / Math.sqrt(
           Math.pow(i.x, 2) + Math.pow(i.y, 2)
         )
       )
     );
-    return new T(
+    return new b(
       c,
-      a,
+      s,
       this.getDistanceToSolarSystemObject(t, e)
     );
   }
   getAltAzCoordinatesForEquatorialCoordinates(t, e) {
-    const i = s.degreesToRadians(
-      s.modDegrees(
+    const i = n.degreesToRadians(
+      n.modDegrees(
         t.longitude - this.getLocalSiderealTime(e)
       )
-    ), r = s.degreesToRadians(
+    ), o = n.degreesToRadians(
       this.sphericalCoordinates.latitude
-    ), n = s.degreesToRadians(
+    ), a = n.degreesToRadians(
       t.latitude
-    ), a = s.radiansToDegrees(
+    ), s = n.radiansToDegrees(
       Math.asin(
-        Math.sin(r) * Math.sin(n) + Math.cos(r) * Math.cos(n) * Math.cos(i)
+        Math.sin(o) * Math.sin(a) + Math.cos(o) * Math.cos(a) * Math.cos(i)
       )
-    ), c = s.radiansToDegrees(
+    ), c = n.radiansToDegrees(
       Math.PI - Math.atan2(
         Math.sin(i),
-        Math.cos(i) * Math.sin(r) - Math.tan(n) * Math.cos(r)
+        Math.cos(i) * Math.sin(o) - Math.tan(a) * Math.cos(o)
       )
     );
-    return new T(a, c, null);
+    return new b(s, c, null);
   }
   getLocalSiderealTime(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       m.meanSiderealTime(t) + this.sphericalCoordinates.longitude
     );
   }
@@ -274,101 +274,101 @@ class F {
     return this.getLocalSiderealTime(e) - i;
   }
   getObjectLocalHourAngleForAltitude(t, e, i) {
-    const r = s.degreesToRadians(
+    const o = n.degreesToRadians(
       this.sphericalCoordinates.latitude
-    ), n = s.degreesToRadians(i), a = s.degreesToRadians(
+    ), a = n.degreesToRadians(i), s = n.degreesToRadians(
       this.getRADecCoordinatesForSolarSystemObject(
         t,
         e
       ).latitude
-    ), c = (Math.sin(n) - Math.sin(r) * Math.sin(a)) / (Math.cos(r) * Math.cos(a));
-    return s.radiansToDegrees(Math.acos(c));
+    ), c = (Math.sin(a) - Math.sin(o) * Math.sin(s)) / (Math.cos(o) * Math.cos(s));
+    return n.radiansToDegrees(Math.acos(c));
   }
   getIterationValueForPositionalEphemerisForObject(t, e, i) {
-    if (i === u.EPHEMERIS_TYPE.TRANSIT)
+    if (i === d.EPHEMERIS_TYPE.TRANSIT)
       return e - this.getObjectTransit(t, e) / 15 / 24;
     {
-      const r = this.getObjectTransit(
+      const o = this.getObjectTransit(
         t,
         e
-      ), n = this.getObjectLocalHourAngleForAltitude(
+      ), a = this.getObjectLocalHourAngleForAltitude(
         t,
         e,
         i.ALTITUDE
-      ), a = s.mod180Degrees(
-        i.IS_GOING_UP ? r + n : r - n
+      ), s = n.mod180Degrees(
+        i.IS_GOING_UP ? o + a : o - a
       );
-      return e - a / 15 / 24;
+      return e - s / 15 / 24;
     }
   }
   iteratePositionalEphemerisForObject(t, e, i) {
-    let r = this.getIterationValueForPositionalEphemerisForObject(
+    let o = this.getIterationValueForPositionalEphemerisForObject(
       t,
       e,
       i
-    ), n = +r;
-    for (let a = 0; a < 1e3 && (r = this.getIterationValueForPositionalEphemerisForObject(
+    ), a = +o;
+    for (let s = 0; s < 1e3 && (o = this.getIterationValueForPositionalEphemerisForObject(
       t,
-      r,
+      o,
       i
-    ), !(Math.abs(r - n) < 10 ^ -5)); a++)
-      n = r;
-    return m.julianDateToDate(r);
+    ), !(Math.abs(o - a) < 10 ^ -5)); s++)
+      a = o;
+    return m.julianDateToDate(o);
   }
-  getCorrectDateForPositionalEphemeris(t, e, i, r) {
-    const n = this.iteratePositionalEphemerisForObject(
+  getCorrectDateForPositionalEphemeris(t, e, i, o) {
+    const a = this.iteratePositionalEphemerisForObject(
       t,
       e,
       i
     );
-    if (r > 0 && n.getDate() !== m.julianDateToDate(e).getDate()) {
-      const a = m.julianDate(n), c = a > e ? -1 : 1;
+    if (o > 0 && a.getDate() !== m.julianDateToDate(e).getDate()) {
+      const s = m.julianDate(a), c = s > e ? -1 : 1;
       return this.getCorrectDateForPositionalEphemeris(
         t,
-        a + c,
+        s + c,
         i,
-        r - 1
+        o - 1
       );
-    } else return r === 0 ? null : n;
+    } else return o === 0 ? null : a;
   }
   getDateForPositionalEphemeris(t, e, i) {
     return this.getCorrectDateForPositionalEphemeris(
       t,
       e,
       i,
-      u.NUMBERS_OF_ATTEMPT_TO_GET_POSITIONAL_EPHEMERIS
+      d.NUMBERS_OF_ATTEMPT_TO_GET_POSITIONAL_EPHEMERIS
     );
   }
 }
-class B {
+class W {
   constructor(t, e) {
     this.objectType = t, this.name = e;
   }
 }
-class g extends B {
-  constructor(t, e, i, r) {
-    super(u.SOLAR_SYSTEM_OBJECT, t), this.orbitalParameters = e, this.meanRadius = i, this.axialTilt = r;
+class y extends W {
+  constructor(t, e, i, o) {
+    super(d.SOLAR_SYSTEM_OBJECT, t), this.orbitalParameters = e, this.meanRadius = i, this.axialTilt = o;
   }
   /**
    * @param julianDate
    * @returns {RectangularCoordinates}
    */
   getRectangularHeliocentricCoordinates(t) {
-    const e = m.julianCenturiesSinceEpoch2000(t), i = s.degreesToRadians(
+    const e = m.julianCenturiesSinceEpoch2000(t), i = n.degreesToRadians(
       this.orbitalParameters.getInclination(e)
-    ), r = s.degreesToRadians(
+    ), o = n.degreesToRadians(
       this.orbitalParameters.getTrueAnomaly(e)
-    ), n = s.degreesToRadians(
+    ), a = n.degreesToRadians(
       this.orbitalParameters.getPerihelion(e)
-    ), a = s.degreesToRadians(
+    ), s = n.degreesToRadians(
       this.orbitalParameters.getAscendingNode(e)
     ), c = this.orbitalParameters.getOrbitRadius(
       e
-    ), l = r + n - a, d = c * (Math.cos(a) * Math.cos(l) - Math.sin(a) * Math.sin(l) * Math.cos(i)), h = c * (Math.sin(a) * Math.cos(l) + Math.cos(a) * Math.sin(l) * Math.cos(i)), f = c * (Math.sin(l) * Math.sin(i));
-    return new I(d, h, f);
+    ), l = o + a - s, u = c * (Math.cos(s) * Math.cos(l) - Math.sin(s) * Math.sin(l) * Math.cos(i)), h = c * (Math.sin(s) * Math.cos(l) + Math.cos(s) * Math.sin(l) * Math.cos(i)), f = c * (Math.sin(l) * Math.sin(i));
+    return new M(u, h, f);
   }
 }
-class b {
+class p {
   /**
    * @constructor
    * @param a0 semi-major axis (AU)
@@ -384,8 +384,8 @@ class b {
    * @param wc longitude of perihelion (arc seconds per Julian century)
    * @param lc mean longitude (arc seconds per Julian century)
    */
-  constructor(t, e, i, r, n, a, c, l, d, h, f, w) {
-    this.a0 = t, this.e0 = e, this.i0 = i, this.o0 = r, this.w0 = n, this.l0 = a, this.ac = c, this.ec = l, this.ic = d, this.oc = h, this.wc = f, this.lc = w;
+  constructor(t, e, i, o, a, s, c, l, u, h, f, S) {
+    this.a0 = t, this.e0 = e, this.i0 = i, this.o0 = o, this.w0 = a, this.l0 = s, this.ac = c, this.ec = l, this.ic = u, this.oc = h, this.wc = f, this.lc = S;
   }
   /**
    * @param julianCenturiesSinceEpoch2000
@@ -402,27 +402,27 @@ class b {
     return this.e0 + this.ec * t;
   }
   getInclination(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       this.i0 + this.ic / 3600 * t
     );
   }
   getAscendingNode(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       this.o0 + this.oc / 3600 * t
     );
   }
   getPerihelion(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       this.w0 + this.wc / 3600 * t
     );
   }
   getMeanLongitude(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       this.l0 + this.lc / 3600 * t
     );
   }
   getMeanAnomaly(t) {
-    return s.modDegrees(
+    return n.modDegrees(
       this.getMeanLongitude(t) - this.getPerihelion(t)
     );
   }
@@ -432,25 +432,25 @@ class b {
    * @returns {*} E: eccentric anomaly
    */
   getEccentricAnomaly(t) {
-    const e = s.degreesToRadians(
+    const e = n.degreesToRadians(
       this.getMeanAnomaly(t)
     ), i = this.getEccentricity(t);
-    let r = e + i * Math.sin(e) * (1 + i * Math.cos(e)), n = 0, a = 0, c = 0;
-    for (; c++ < 1e4 && (n = r - (r - i * Math.sin(r) - e) / (1 - i * Math.cos(r)), a = n - r, r = n, !(Math.abs(a) <= u.EPS)); )
+    let o = e + i * Math.sin(e) * (1 + i * Math.cos(e)), a = 0, s = 0, c = 0;
+    for (; c++ < 1e4 && (a = o - (o - i * Math.sin(o) - e) / (1 - i * Math.cos(o)), s = a - o, o = a, !(Math.abs(s) <= d.EPS)); )
       ;
-    return s.radiansToDegrees(n);
+    return n.radiansToDegrees(a);
   }
   /**
    * @param julianCenturiesSinceEpoch2000
    * @returns V: true anomaly
    */
   getTrueAnomaly(t) {
-    const e = this.getEccentricity(t), i = s.degreesToRadians(
+    const e = this.getEccentricity(t), i = n.degreesToRadians(
       this.getEccentricAnomaly(t)
-    ), r = 2 * Math.atan(
+    ), o = 2 * Math.atan(
       Math.sqrt((1 + e) / (1 - e)) * Math.tan(0.5 * i)
     );
-    return s.radiansToDegrees(r);
+    return n.radiansToDegrees(o);
   }
   /**
    * R = (a * (1 - e^2)) / (1 + e * cos(V))
@@ -458,13 +458,13 @@ class b {
    * @returns R: orbit radius
    */
   getOrbitRadius(t) {
-    const e = this.getSemiMajorAxis(t), i = this.getEccentricity(t), r = this.getTrueAnomaly(t);
-    return e * (1 - Math.pow(i, 2)) / (1 + i * Math.cos(s.degreesToRadians(r)));
+    const e = this.getSemiMajorAxis(t), i = this.getEccentricity(t), o = this.getTrueAnomaly(t);
+    return e * (1 - Math.pow(i, 2)) / (1 + i * Math.cos(n.degreesToRadians(o)));
   }
 }
-class W extends g {
+class J extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       0.38709893,
       0.20563069,
       7.00487,
@@ -481,9 +481,9 @@ class W extends g {
     super("Mercury", t, 2439700, 2.04);
   }
 }
-class J extends g {
+class B extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       0.72333199,
       677323e-8,
       3.39471,
@@ -500,9 +500,9 @@ class J extends g {
     super("Venus", t, 6051800, 2.64);
   }
 }
-class Z extends g {
+class Z extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       1.00000011,
       0.01671022,
       5e-5,
@@ -519,9 +519,9 @@ class Z extends g {
     super("Earth", t, 6371e3, 23.439281);
   }
 }
-class q extends g {
+class q extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       1.52366231,
       0.09341233,
       1.85061,
@@ -538,9 +538,9 @@ class q extends g {
     super("Mars", t, 3389500, 25.19);
   }
 }
-class X extends g {
+class X extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       5.20336301,
       0.04839266,
       1.3053,
@@ -557,9 +557,9 @@ class X extends g {
     super("Jupiter", t, 69911e3, 3.13);
   }
 }
-class K extends g {
+class K extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       9.53707032,
       0.0541506,
       2.48446,
@@ -576,9 +576,9 @@ class K extends g {
     super("Saturn", t, 58232e3, 26.73);
   }
 }
-class Q extends g {
+class Q extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       19.19126393,
       0.04716771,
       0.76986,
@@ -595,9 +595,9 @@ class Q extends g {
     super("Uranus", t, 25362e3, 97.77);
   }
 }
-class tt extends g {
+class tt extends y {
   constructor() {
-    const t = new b(
+    const t = new p(
       30.06896348,
       858587e-8,
       1.76917,
@@ -615,8 +615,8 @@ class tt extends g {
   }
 }
 const et = [
-  new W(),
   new J(),
+  new B(),
   new Z(),
   new q(),
   new X(),
@@ -624,18 +624,38 @@ const et = [
   new Q(),
   new tt()
 ];
-class it extends g {
+class it extends y {
+  constructor() {
+    const t = new p(
+      39.48168677,
+      0.24880766,
+      17.14175,
+      110.30347,
+      113.76329,
+      238.92881,
+      -207e-10,
+      6465e-8,
+      501e-8,
+      -37.033,
+      7.765,
+      145.2078
+    );
+    super("Pluto", t, 1188300, 122.53);
+  }
+}
+const rt = [new it()];
+class ot extends y {
   constructor() {
     super("Sun", null, 695508e3);
   }
   getRectangularHeliocentricCoordinates(t) {
-    return new I(0, 0, 0);
+    return new M(0, 0, 0);
   }
 }
-const ot = [new it()].concat(et);
-class N {
+const at = [new ot()].concat(et).concat(rt);
+class P {
   constructor() {
-    this.skyObjects = [...ot], this.astronomicalCalculator = new F(), this.julianDate = null, this.date = null;
+    this.skyObjects = [...at], this.astronomicalCalculator = new F(), this.julianDate = null, this.date = null;
   }
   getJulianDate() {
     return this.julianDate;
@@ -653,21 +673,21 @@ class N {
     return this.skyObjects.find((e) => e.name === t) || null;
   }
   getEphemerisTypeByName(t) {
-    return Object.values(u.EPHEMERIS_TYPE).find(
+    return Object.values(d.EPHEMERIS_TYPE).find(
       (e) => e.NAME === t
     ) || null;
   }
-  setLocation(t, e, i, r) {
-    const n = this.getSkyObjectByName(t);
-    if (!n)
+  setLocation(t, e, i, o) {
+    const a = this.getSkyObjectByName(t);
+    if (!a)
       throw new Error(`Solar system object "${t}" not found`);
     this.astronomicalCalculator = new F(
-      new T(
+      new b(
         e,
         i,
-        n.meanRadius + r
+        a.meanRadius + o
       ),
-      n
+      a
     );
   }
   getRADecCoordinatesForObject(t) {
@@ -692,49 +712,49 @@ class N {
     const i = this.getSkyObjectByName(t);
     if (!i)
       throw new Error(`Object "${t}" not found`);
-    const r = e ? m.julianDate(e) : this.julianDate;
-    if (r === null)
+    const o = e ? m.julianDate(e) : this.julianDate;
+    if (o === null)
       throw new Error("Reference date not set");
-    const n = this.astronomicalCalculator.getRADecCoordinatesForSolarSystemObject(
+    const a = this.astronomicalCalculator.getRADecCoordinatesForSolarSystemObject(
       i,
-      r
+      o
     );
     return this.astronomicalCalculator.getAltAzCoordinatesForEquatorialCoordinates(
-      n,
-      r
+      a,
+      o
     );
   }
   static initialize(t, e) {
-    let i = new N();
+    let i = new P();
     return i.setLocation("Earth", t, e, 0), i.setDate(/* @__PURE__ */ new Date()), i;
   }
   getEphemerisDateForObject(t, e, i) {
-    const r = this.getSkyObjectByName(t), n = this.getEphemerisTypeByName(i);
-    if (!r || !n)
+    const o = this.getSkyObjectByName(t), a = this.getEphemerisTypeByName(i);
+    if (!o || !a)
       throw new Error("Invalid object name or ephemeris type");
     return this.astronomicalCalculator.getDateForPositionalEphemeris(
-      r,
+      o,
       m.julianDate(e),
-      n
+      a
     );
   }
 }
-function S(o, t) {
-  return `<svg viewBox="0 0 1000 1000" width="${o}" height="${o}"
+function x(r, t) {
+  return `<svg viewBox="0 0 1000 1000" width="${r}" height="${r}"
         xmlns="http://www.w3.org/2000/svg">
         <rect width="100%" height="100%" fill="${t}" />`;
 }
-function rt(o, t) {
-  return `<svg viewBox="0 0 2000 1000" width="${o}" height="${o / 2}"
+function st(r, t) {
+  return `<svg viewBox="0 0 2000 1000" width="${r}" height="${r / 2}"
         xmlns="http://www.w3.org/2000/svg">
         <rect width="100%" height="100%" fill="${t}" />`;
 }
-function E() {
+function T() {
   return "</svg>";
 }
-function p(o, t) {
-  let e = t ? at() : "";
-  return o === "Sun" ? e += nt() : o === "Mars" && (e += st()), e += t ? ct() : "", e;
+function g(r, t) {
+  let e = t ? pt() : "";
+  return r === "Sun" ? e += nt() : r === "Mercury" ? e += ct() : r === "Venus" ? e += lt() : r === "Mars" ? e += ut() : r === "Jupiter" ? e += dt() : r === "Saturn" ? e += ht() : r === "Uranus" ? e += ft() : r === "Neptune" ? e += yt() : r === "Pluto" && (e += gt()), e += t ? mt() : "", e;
 }
 function nt() {
   return `
@@ -752,7 +772,47 @@ function nt() {
             <line x1="597" y1="375" x2="625" y2="403" />
         </g>`;
 }
-function st() {
+function ct() {
+  return `
+    <!-- Mercury base -->
+    <circle cx="500" cy="278" r="139" fill="#b0a59f" />
+
+    <!-- Craters across surface, including near edges -->
+    <circle cx="470" cy="230" r="14" fill="#72655f" opacity="0.70" />
+    <circle cx="530" cy="250" r="12" fill="#5e524e" opacity="0.75" />
+    <circle cx="490" cy="305" r="11" fill="#6a5c58" opacity="0.68" />
+    <circle cx="455" cy="275" r="10" fill="#4f4541" opacity="0.65" />
+    <circle cx="520" cy="325" r="9" fill="#6c615c" opacity="0.70" />
+    <circle cx="540" cy="215" r="13" fill="#645954" opacity="0.72" />
+
+    <!-- Near-edge craters -->
+    <circle cx="390" cy="278" r="8" fill="#72655f" opacity="0.70" />
+    <circle cx="610" cy="278" r="9" fill="#5e524e" opacity="0.73" />
+    <circle cx="500" cy="139" r="10" fill="#6c615c" opacity="0.68" />
+    <circle cx="500" cy="417" r="11" fill="#4f4541" opacity="0.70" />
+    <circle cx="410" cy="185" r="8" fill="#6a5c58" opacity="0.67" />
+    <circle cx="590" cy="365" r="9" fill="#645954" opacity="0.72" />
+  `;
+}
+function lt() {
+  return `
+    <!-- Venus base -->
+    <circle cx="500" cy="278" r="139" fill="#e5c07b" />
+
+    <!-- Thicker cloud bands -->
+    <ellipse cx="500" cy="240" rx="139" ry="18" fill="#d4b06a" opacity="0.35" />
+    <ellipse cx="500" cy="278" rx="139" ry="20" fill="#c8a158" opacity="0.3" />
+    <ellipse cx="500" cy="315" rx="139" ry="16" fill="#b89249" opacity="0.25" />
+
+    <!-- Swirl features -->
+    <circle cx="470" cy="250" r="20" fill="#b88e3b" opacity="0.3" />
+
+    <!-- Polar glow (top and bottom) -->
+    <ellipse cx="500" cy="160" rx="60" ry="20" fill="white" opacity="0.4" />
+    <ellipse cx="500" cy="400" rx="60" ry="20" fill="white" opacity="0.4" />
+  `;
+}
+function ut() {
   return `<circle cx="500" cy="278" r="139" fill="#d2691e" />
           <!-- Ice cap (ellipse) -->
           <ellipse cx="500" cy="167" rx="42" ry="21" fill="white" opacity="0.9" />
@@ -762,7 +822,118 @@ function st() {
           <circle cx="514" cy="250" r="13.9" fill="#cd853f" />
           <circle cx="472" cy="306" r="10.4" fill="#cd853f" />`;
 }
-function at() {
+function dt() {
+  return `
+    <!-- Jupiter base -->
+    <circle cx="500" cy="278" r="139" fill="#d2b48c" />
+
+    <!-- Symmetrical medium bands -->
+    <ellipse cx="500" cy="248" rx="139" ry="12" fill="#c89b76" opacity="0.85" />
+    <ellipse cx="500" cy="278" rx="139" ry="10" fill="#ba8c6e" opacity="0.85" />
+    <ellipse cx="500" cy="308" rx="139" ry="12" fill="#c89b76" opacity="0.85" />
+
+    <!-- Great Red Spot -->
+    <ellipse cx="570" cy="305" rx="20" ry="12" fill="#cc543a" />
+    
+    <ellipse cx="500" cy="170" rx="60" ry="30" fill="#ba8c6e" opacity="0.7" />
+  `;
+}
+function ht() {
+  return `
+    <!-- Rings behind -->
+    <g transform="rotate(-25 500 278)">
+      <ellipse cx="500" cy="278" rx="220" ry="50" fill="none" stroke="#e6e6e6" stroke-width="20" opacity="0.5" />
+      <ellipse cx="500" cy="278" rx="250" ry="55" fill="none" stroke="#f2f2f2" stroke-width="12" opacity="0.4" />
+    </g>
+
+    <!-- Saturn base (on top of back rings) -->
+    <circle cx="500" cy="278" r="139" fill="#d8c48f" />
+
+    <!-- Atmospheric bands -->
+    <ellipse cx="500" cy="260" rx="139" ry="12" fill="#c9b87e" opacity="0.5" />
+    <ellipse cx="500" cy="278" rx="139" ry="14" fill="#bcae6f" opacity="0.5" />
+    <ellipse cx="500" cy="296" rx="139" ry="12" fill="#b1a460" opacity="0.45" />
+
+    <!-- Polar glow -->
+    <ellipse cx="500" cy="139" rx="60" ry="20" fill="white" opacity="0.15" />
+    <ellipse cx="500" cy="417" rx="60" ry="20" fill="white" opacity="0.15" />
+
+    <!-- Rings front -->
+    <g transform="rotate(-25 500 278)">
+      <ellipse cx="500" cy="278" rx="220" ry="50" fill="none" stroke="#f5f5f5" stroke-width="14" opacity="0.7" />
+      <ellipse cx="500" cy="278" rx="250" ry="55" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.5" />
+    </g>
+  `;
+}
+function ft() {
+  return `
+    <!-- Uranus base -->
+    <circle cx="500" cy="278" r="139" fill="#7fdbff" />
+
+    <!-- Atmospheric subtle bands -->
+    <ellipse cx="500" cy="260" rx="139" ry="12" fill="#6ec8e9" opacity="0.4" />
+    <ellipse cx="500" cy="278" rx="139" ry="14" fill="#62b4d8" opacity="0.4" />
+    <ellipse cx="500" cy="296" rx="139" ry="12" fill="#5aa2c6" opacity="0.35" />
+
+    <!-- Polar glow -->
+    <ellipse cx="500" cy="139" rx="60" ry="20" fill="white" opacity="0.12" />
+    <ellipse cx="500" cy="417" rx="60" ry="20" fill="white" opacity="0.12" />
+
+    <!-- Small swirl / cloud feature -->
+    <circle cx="460" cy="290" r="20" fill="#54a3b9" opacity="0.5" />
+    <circle cx="540" cy="260" r="17" fill="#6dc3e3" opacity="0.45" />
+  `;
+}
+function yt() {
+  return `
+    <!-- Neptune base -->
+    <circle cx="500" cy="278" r="139" fill="#3b5ca8" />
+
+    <!-- Atmospheric subtle bands -->
+    <ellipse cx="500" cy="260" rx="139" ry="12" fill="#345292" opacity="0.45" />
+    <ellipse cx="500" cy="278" rx="139" ry="14" fill="#2f4b7f" opacity="0.45" />
+    <ellipse cx="500" cy="296" rx="139" ry="12" fill="#2a456f" opacity="0.4" />
+
+    <!-- Polar glow -->
+    <ellipse cx="500" cy="139" rx="60" ry="20" fill="white" opacity="0.1" />
+    <ellipse cx="500" cy="417" rx="60" ry="20" fill="white" opacity="0.1" />
+
+    <!-- Cloud spots -->
+    <circle cx="460" cy="290" r="25" fill="#4064c7" opacity="0.6" />
+    <circle cx="530" cy="250" r="20" fill="#4a71d2" opacity="0.55" />
+    <circle cx="520" cy="320" r="15" fill="#3a56a0" opacity="0.5" />
+  `;
+}
+function gt() {
+  return `
+    <!-- Pluto base -->
+    <circle cx="500" cy="278" r="139" fill="#c2b29e" />
+
+    <!-- Surface patches -->
+    <circle cx="460" cy="290" r="25" fill="#a89987" opacity="0.7" />
+    <circle cx="540" cy="260" r="20" fill="#bfb7a8" opacity="0.65" />
+    <circle cx="520" cy="320" r="15" fill="#9f8f7d" opacity="0.6" />
+    <circle cx="480" cy="310" r="10" fill="#b0a596" opacity="0.6" />
+
+    <!-- Icy heart -->
+    <path
+      d="
+        M 500 300
+        C 500 250, 440 250, 440 300
+        C 440 350, 500 370, 500 400
+        C 500 370, 560 350, 560 300
+        C 560 250, 500 250, 500 300
+        Z
+      "
+      fill="#e9e6e1"
+      opacity="0.9"
+    />
+
+    <!-- Slight shadow for depth -->
+    <ellipse cx="470" cy="320" rx="100" ry="50" fill="black" opacity="0.1" />
+  `;
+}
+function pt() {
   return `<defs>
     <filter id="grayscale">
         <feColorMatrix type="saturate" values="0" />
@@ -770,241 +941,212 @@ function at() {
     </defs>
     <g filter="url(#grayscale)">`;
 }
-function ct() {
+function mt() {
   return "</g>";
 }
-function lt(o) {
-  const t = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"], e = (o % 360 + 360) % 360, i = Math.floor((e + 22.5) / 45) % 8;
+function bt(r) {
+  const t = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"], e = (r % 360 + 360) % 360, i = Math.floor((e + 22.5) / 45) % 8;
   return t[i];
 }
-function U(o, t) {
-  return `${o.toFixed(1)} ${o > t ? "▲" : o < t ? "▼" : ""}`;
+function U(r, t) {
+  return `${r.toFixed(1)} ${r > t ? "▲" : r < t ? "▼" : ""}`;
 }
-function H(o) {
-  return `${o.toFixed(1)} ${lt(o)}`;
+function H(r) {
+  return `${r.toFixed(1)} ${bt(r)}`;
 }
-function y(o) {
+function A(r) {
   return `<text x="500" y="660" font-size="139" text-anchor="middle"
               fill="white" font-family="Verdana" dominant-baseline="middle">
-        ${o}
+        ${r}
         </text>`;
 }
-function A(o) {
+function w(r) {
   return `<text x="500" y="833" font-size="139" text-anchor="middle"
                 fill="white" font-family="Verdana" dominant-baseline="middle">
-          ${o}
+          ${r}
           </text>`;
 }
-function ut(o, t, e) {
-  let i = o.getAltAzCoordinatesForObject(t).longitude, r = S(e, "black");
-  return r += p(t), r += y("Azimuth"), r += A(H(i)), r += E(), r;
+function xt(r, t, e) {
+  let i = r.getAltAzCoordinatesForObject(t).longitude, o = x(e, "black");
+  return o += g(t), o += A("Azimuth"), o += w(H(i)), o += T(), o;
 }
-function dt(o, t, e) {
-  let i = o.getAltAzCoordinatesForObject(t).latitude, r = o.getAltAzCoordinatesForObject(
+function Tt(r, t, e) {
+  let i = r.getAltAzCoordinatesForObject(t).latitude, o = r.getAltAzCoordinatesForObject(
     t,
-    new Date(o.getDate() - 5 * 60 * 1e3)
-  ).latitude, n = S(e, "black");
-  return n += p(t), n += y("Altitude"), n += A(U(i, r)), n += E(), n;
+    new Date(r.getDate() - 5 * 60 * 1e3)
+  ).latitude, a = x(e, "black");
+  return a += g(t), a += A("Altitude"), a += w(U(i, o)), a += T(), a;
 }
-function G(o) {
-  const t = parseInt(o.slice(1), 16);
+function k(r) {
+  const t = parseInt(r.slice(1), 16);
   return {
     r: t >> 16 & 255,
     g: t >> 8 & 255,
     b: t & 255
   };
 }
-function ht({ r: o, g: t, b: e }) {
-  return "#" + [o, t, e].map((i) => i.toString(16).padStart(2, "0")).join("");
+function St({ r, g: t, b: e }) {
+  return "#" + [r, t, e].map((i) => i.toString(16).padStart(2, "0")).join("");
 }
-function j(o, t, e) {
-  return o + (t - o) * e;
+function $(r, t, e) {
+  return r + (t - r) * e;
 }
-function O(o, t, e) {
-  return (e - o) / (t - o);
+function D(r, t, e) {
+  return (e - r) / (t - r);
 }
-function x(o, t, e) {
-  const i = G(o), r = G(t);
-  return ht({
-    r: Math.round(j(i.r, r.r, e)),
-    g: Math.round(j(i.g, r.g, e)),
-    b: Math.round(j(i.b, r.b, e))
+function O(r, t, e) {
+  const i = k(r), o = k(t);
+  return St({
+    r: Math.round($(i.r, o.r, e)),
+    g: Math.round($(i.g, o.g, e)),
+    b: Math.round($(i.b, o.b, e))
   });
 }
-function gt(o) {
-  const t = o.getAltAzCoordinatesForObject("Sun").latitude, e = ft(t), i = z(t), r = O(
+function At(r) {
+  const t = r.getAltAzCoordinatesForObject("Sun").latitude, e = wt(t), i = z(t), o = D(
     e.limit,
     i.limit,
     t
-  ), n = x(
+  ), a = O(
     e.top,
     i.top,
-    r
-  ), a = x(
+    o
+  ), s = O(
     e.bottom,
     i.bottom,
-    r
+    o
   );
   return `<defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="${n}" />
-                <stop offset="55%" stop-color="${n}" />
-                <stop offset="100%" stop-color="${a}" />
+                <stop offset="0%" stop-color="${a}" />
+                <stop offset="55%" stop-color="${a}" />
+                <stop offset="100%" stop-color="${s}" />
             </linearGradient></defs>`;
 }
-function z(o) {
-  return o <= -18 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -18 } : o <= -15 ? { top: "#0b0c1a", bottom: "#101734", limit: -15 } : o <= -12 ? { top: "#171c27", bottom: "#282e3c", limit: -12 } : o <= -9 ? { top: "#171c29", bottom: "#525662", limit: -9 } : o <= -6 ? { top: "#4e545f", bottom: "#b9a76c", limit: -6 } : o <= -3 ? { top: "#909798", bottom: "#f9d92b", limit: -3 } : o <= 0 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: 0 } : o <= 10 ? { top: "#bcd6fc", bottom: "#98d5fc", limit: 10 } : { top: "#cce8fd", bottom: "#98d5fc", limit: 90 };
+function z(r) {
+  return r <= -18 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -18 } : r <= -15 ? { top: "#0b0c1a", bottom: "#101734", limit: -15 } : r <= -12 ? { top: "#171c27", bottom: "#282e3c", limit: -12 } : r <= -9 ? { top: "#171c29", bottom: "#525662", limit: -9 } : r <= -6 ? { top: "#4e545f", bottom: "#b9a76c", limit: -6 } : r <= -3 ? { top: "#909798", bottom: "#f9d92b", limit: -3 } : r <= 0 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: 0 } : r <= 10 ? { top: "#bcd6fc", bottom: "#98d5fc", limit: 10 } : { top: "#cce8fd", bottom: "#98d5fc", limit: 90 };
 }
-function ft(o) {
-  return o <= -18 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -90 } : o <= -15 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -18 } : o <= -12 ? { top: "#0b0c1a", bottom: "#101734", limit: -15 } : o <= -9 ? { top: "#171c27", bottom: "#282e3c", limit: -12 } : o <= -6 ? { top: "#171c29", bottom: "#525662", limit: -9 } : o <= -3 ? { top: "#4e545f", bottom: "#b9a76c", limit: -6 } : o <= 0 ? { top: "#909798", bottom: "#f9d92b", limit: -3 } : o <= 10 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: 0 } : { top: "#bcd6fc", bottom: "#98d5fc", limit: 10 };
+function wt(r) {
+  return r <= -18 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -90 } : r <= -15 ? { top: "#0b0c1a", bottom: "#0b0c1a", limit: -18 } : r <= -12 ? { top: "#0b0c1a", bottom: "#101734", limit: -15 } : r <= -9 ? { top: "#171c27", bottom: "#282e3c", limit: -12 } : r <= -6 ? { top: "#171c29", bottom: "#525662", limit: -9 } : r <= -3 ? { top: "#4e545f", bottom: "#b9a76c", limit: -6 } : r <= 0 ? { top: "#909798", bottom: "#f9d92b", limit: -3 } : r <= 10 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: 0 } : { top: "#bcd6fc", bottom: "#98d5fc", limit: 10 };
 }
-function mt(o, t, e) {
-  const i = o.getDate(), r = i.getHours() * 60 + i.getMinutes(), n = e ? 2e3 : 1e3, a = Tt(o.getDate()), c = a.map((C, _) => {
-    const Y = _ / (a.length - 1) * n, V = o.getAltAzCoordinatesForObject(
+function Et(r, t, e) {
+  const i = r.getDate(), o = i.getHours() * 60 + i.getMinutes(), a = e ? 2e3 : 1e3, s = Mt(r.getDate()), c = s.map((R, _) => {
+    const V = _ / (s.length - 1) * a, Y = r.getAltAzCoordinatesForObject(
       "Sun",
-      C
+      R
     ).latitude;
-    return [Y, k(V, -90, 90, 950, 50).toFixed(0)];
-  }).map(([C, _]) => `${C},${_}`).join(" "), l = o.getAltAzCoordinatesForObject("Sun").latitude, d = k(l, -90, 90, 950, 50).toFixed(0), h = z(l), f = pt(l), w = O(
+    return [V, G(Y, -90, 90, 950, 50).toFixed(0)];
+  }).map(([R, _]) => `${R},${_}`).join(" "), l = r.getAltAzCoordinatesForObject("Sun").latitude, u = G(l, -90, 90, 950, 50).toFixed(0), h = z(l), f = It(l), S = D(
     f.limit,
     h.limit,
     l
-  ), M = x(
+  ), E = O(
     h.bottom,
     f.bottom,
-    w
-  ), R = l > 0 ? 1 : l < -9 ? 0 : O(-9, 0, l), v = l > -3 ? 1 : l < -9 ? 0 : O(-9, -3, l), P = x(
+    S
+  ), C = l > 0 ? 1 : l < -9 ? 0 : D(-9, 0, l), v = l > -3 ? 1 : l < -9 ? 0 : D(-9, -3, l), L = O(
     "#808080",
     "#ffffff",
     v
   );
-  let D = e ? rt(t, "black") : S(t, "black");
-  return D += `
-        <rect x="0" y="500" width="${n}" height="500" fill="black" />
+  let I = e ? st(t, "black") : x(t, "black");
+  return I += `
+        <rect x="0" y="500" width="${a}" height="500" fill="black" />
         <defs>
             <clipPath id="top-half-clip">
-                <rect x="0" y="500" width="${n * 2}" height="500" />
+                <rect x="0" y="500" width="${a * 2}" height="500" />
             </clipPath>
             <clipPath id="bottom-half-clip">
-                <rect x="0" y="0" width="${n * 2}" height="500" />
+                <rect x="0" y="0" width="${a * 2}" height="500" />
             </clipPath>
             <radialGradient id="sun-glow" cx="50%" cy="50%" r="75%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity=" ${1 * R}" />
-                <stop offset="25%" stop-color="#ffffff" stop-opacity=" ${1 * R}" />
-                <stop offset="60%" stop-color="#ffffff" stop-opacity=" ${0.1 * R}" />
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=" ${1 * C}" />
+                <stop offset="25%" stop-color="#ffffff" stop-opacity=" ${1 * C}" />
+                <stop offset="60%" stop-color="#ffffff" stop-opacity=" ${0.1 * C}" />
                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
             </radialGradient>
             <radialGradient id="twilight-glow" cx="50%" cy="50%" r="75%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="${M}" stop-opacity="0.5" />
-                <stop offset="50%" stop-color="${M}" stop-opacity="0.15" />
-                <stop offset="90%" stop-color="${M}" stop-opacity="0.1" />
-                <stop offset="100%" stop-color="${M}" stop-opacity="0.0" />
+                <stop offset="0%" stop-color="${E}" stop-opacity="0.5" />
+                <stop offset="50%" stop-color="${E}" stop-opacity="0.15" />
+                <stop offset="90%" stop-color="${E}" stop-opacity="0.1" />
+                <stop offset="100%" stop-color="${E}" stop-opacity="0.0" />
             </radialGradient>
             <linearGradient id="sun-line-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="80%" stop-color="${P}" stop-opacity="1" />
+                <stop offset="80%" stop-color="${L}" stop-opacity="1" />
                 <stop offset="100%" stop-color="#808080" stop-opacity="1" />
             </linearGradient>
         </defs>
-        <rect x="0" y="0" width="${n}" height="500" fill="url(#sky)" />
-        <ellipse cx="${L(r, n)}" cy="${d}" rx="${1.2 * n}" ry="125" fill="url(#twilight-glow)" />
-        <rect x="0" y="500" width="${n}" height="500" fill="black" />
+        <rect x="0" y="0" width="${a}" height="500" fill="url(#sky)" />
+        <ellipse cx="${j(o, a)}" cy="${u}" rx="${1.2 * a}" ry="125" fill="url(#twilight-glow)" />
+        <rect x="0" y="500" width="${a}" height="500" fill="black" />
         <polyline fill="none" stroke="url(#sun-line-gradient)" stroke-width="35" points="${c}" clip-path="url(#top-half-clip)"/>
         <polyline fill="none" stroke="url(#sun-line-gradient)" stroke-width="35" points="${c}" clip-path="url(#bottom-half-clip)"/>
-        <line x1="0" y1="500" x2="${n}" y2="500" stroke="${P}" stroke-width="5" />
-        <circle cx="${L(r, n)}"
-            cy="${d}" r="50" stroke="#808080" stroke-width="20" clip-path="url(#top-half-clip)" />
-        <circle cx="${L(r, n)}"
-            cy="${d}" r="150" fill="url(#sun-glow)" clip-path="url(#bottom-half-clip)" />
-           `, D += gt(o), D += E(), console.log(), D;
+        <line x1="0" y1="500" x2="${a}" y2="500" stroke="${L}" stroke-width="15" />
+        <circle cx="${j(o, a)}"
+            cy="${u}" r="50" stroke="#808080" stroke-width="20" clip-path="url(#top-half-clip)" />
+        <circle cx="${j(o, a)}"
+            cy="${u}" r="150" fill="url(#sun-glow)" clip-path="url(#bottom-half-clip)" />
+           `, I += At(r), I += T(), console.log(), I;
 }
-function Tt(o) {
+function Mt(r) {
   const t = [], e = new Date(
-    o.getFullYear(),
-    o.getMonth(),
-    o.getDate()
+    r.getFullYear(),
+    r.getMonth(),
+    r.getDate()
   );
   for (let i = 0; i < 48; i++) {
-    const r = new Date(e.getTime() + i * 30 * 60 * 1e3);
-    t.push(r);
+    const o = new Date(e.getTime() + i * 30 * 60 * 1e3);
+    t.push(o);
   }
   return t;
 }
-function k(o, t, e, i, r) {
-  return i + (o - t) * (r - i) / (e - t);
+function G(r, t, e, i, o) {
+  return i + (r - t) * (o - i) / (e - t);
 }
-function L(o, t) {
-  return o / 1440 * t;
+function j(r, t) {
+  return r / 1440 * t;
 }
-function pt(o) {
-  return o <= -18 ? { top: "#0b0c1a", bottom: "#101734", limit: -90 } : o <= -15 ? { top: "#171c27", bottom: "#282e3c", limit: -18 } : o <= -12 ? { top: "#171c29", bottom: "#525662", limit: -15 } : o <= -9 ? { top: "#4e545f", bottom: "#b9a76c", limit: -12 } : o <= -6 ? { top: "#909798", bottom: "#f9d92b", limit: -9 } : o <= -3 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: -6 } : o <= 0 ? { top: "#bcd6fc", bottom: "#98d5fc", limit: -3 } : { top: "#cce8fd", bottom: "#98d5fc", limit: 0 };
+function It(r) {
+  return r <= -18 ? { top: "#0b0c1a", bottom: "#101734", limit: -90 } : r <= -15 ? { top: "#171c27", bottom: "#282e3c", limit: -18 } : r <= -12 ? { top: "#171c29", bottom: "#525662", limit: -15 } : r <= -9 ? { top: "#4e545f", bottom: "#b9a76c", limit: -12 } : r <= -6 ? { top: "#909798", bottom: "#f9d92b", limit: -9 } : r <= -3 ? { top: "#b6d8ed", bottom: "#f6da3f", limit: -6 } : r <= 0 ? { top: "#bcd6fc", bottom: "#98d5fc", limit: -3 } : { top: "#cce8fd", bottom: "#98d5fc", limit: 0 };
 }
-function bt(o, t, e) {
-  let i = o.getEphemerisDateForObject(
+function Dt(r, t, e) {
+  let i = r.getEphemerisDateForObject(
     t,
-    o.getDate(),
+    r.getDate(),
     "RISE"
-  ), r = S(e, "black");
-  return r += p(t), r += y("Rise"), r += A(
+  ), o = x(e, "black");
+  return o += g(t), o += A("Rise"), o += w(
     i.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
       hour12: !1
     })
-  ), r += E(), r;
+  ), o += T(), o;
 }
-function yt(o, t, e) {
-  let i = o.getEphemerisDateForObject(
+function Ot(r, t, e) {
+  let i = r.getEphemerisDateForObject(
     t,
-    o.getDate(),
+    r.getDate(),
     "SET"
-  ), r = S(e, "black");
-  return r += p(t), r += y("Rise"), r += A(
+  ), o = x(e, "black");
+  return o += g(t), o += A("Set"), o += w(
     i.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
       hour12: !1
     })
-  ), r += E(), r;
+  ), o += T(), o;
 }
-function At(o, t, e) {
-  let i = o.getAltAzCoordinatesForObject(t), r = S(e, "black");
+function Ct(r, t, e) {
+  let i = r.getAltAzCoordinatesForObject(t), o = x(e, "black");
   if (i.latitude < 0) {
-    r += p(t, !0);
-    let n = o.getEphemerisDateForObject(
+    o += g(t, !0);
+    let a = r.getEphemerisDateForObject(
       t,
-      o.getDate(),
+      r.getDate(),
       "RISE"
     );
-    r += y("Visible at"), r += A(
-      n.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: !1
-      })
-    );
-  } else {
-    let n = o.getAltAzCoordinatesForObject(
-      t,
-      new Date(o.getDate() - 3e5)
-    ).latitude;
-    r += y(
-      U(i.latitude, n)
-    ), r += A(
-      H(i.longitude)
-    ), r += p(t);
-  }
-  return r += E(), r;
-}
-function St(o, t, e, i) {
-  let r = o.getAltAzCoordinatesForObject(t), n = S(e, "black");
-  if (r.latitude < 0) {
-    n += p(t, !0);
-    let a = o.getEphemerisDateForObject(
-      t,
-      o.getDate(),
-      "RISE"
-    );
-    n += y("Visible at"), n += A(
+    o += A("Visible at"), o += w(
       a.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
@@ -1012,26 +1154,79 @@ function St(o, t, e, i) {
       })
     );
   } else {
-    let a = 380, c = 500, l = 520, d = a * (1 - r.latitude / 90), h = (r.longitude - 90) * (Math.PI / 180), f = c + d * Math.cos(h), w = l + d * Math.sin(h);
-    n += '<rect x="0" y="0" width="1000" height="1000" fill="url(#sky)" />', i !== void 0 && i !== 0 ? n += `
+    let a = r.getAltAzCoordinatesForObject(
+      t,
+      new Date(r.getDate() - 3e5)
+    ).latitude;
+    o += A(
+      U(i.latitude, a)
+    ), o += w(
+      H(i.longitude)
+    ), o += g(t);
+  }
+  return o += T(), o;
+}
+function Rt(r, t, e, i) {
+  let o = r.getAltAzCoordinatesForObject(t), a = x(e, "black");
+  if (o.latitude < 0) {
+    a += g(t, !0);
+    let s = r.getEphemerisDateForObject(
+      t,
+      r.getDate(),
+      "RISE"
+    );
+    a += A("Visible at"), a += w(
+      s.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: !1
+      })
+    );
+  } else {
+    let s = 380, c = 500, l = 520, u = s * (1 - o.latitude / 90), h = (o.longitude - 90) * (Math.PI / 180), f = c + u * Math.cos(h), S = l + u * Math.sin(h);
+    a += '<rect x="0" y="0" width="1000" height="1000" fill="url(#sky)" />', i !== void 0 && i !== 0 ? a += `
             <g fill="white" font-size="70" font-family="sans-serif" text-anchor="middle" dominant-baseline="middle">
-            <text x="${c}" y="${l - a - 60}">${i}</text>
+            <text x="${c}" y="${l - s - 60}">${i}</text>
           </g>
           <g transform="rotate(${360 - i} ${c} ${l})">
-        ` : n += "<g>", n += `
-          <circle cx="${c}" cy="${l}" r="${a}" fill="none" stroke="white" stroke-width="15" />
-          <circle cx="${c}" cy="${l}" r="${a / 2}" fill="none" stroke="white" stroke-width="8" />
+        ` : a += "<g>", a += `
+          <circle cx="${c}" cy="${l}" r="${s}" fill="none" stroke="white" stroke-width="15" />
+          <circle cx="${c}" cy="${l}" r="${s / 2}" fill="none" stroke="white" stroke-width="8" />
           <g fill="white" font-size="70" font-family="sans-serif" text-anchor="middle" dominant-baseline="middle">
-            <text x="${c}" y="${l - a - 60}">N</text>
+            <text x="${c}" y="${l - s - 60}">N</text>
           </g>
-        `, n += `<g transform="translate(${f - 500}, ${w - 279})
-                translate(500, 279) scale(0.3) translate(-500, -279)">`, n += p(t), n += "</g></g>";
+        `, a += `<g transform="translate(${f - 500}, ${S - 279})
+                translate(500, 279) scale(0.3) translate(-500, -279)">`, a += g(t), a += "</g></g>";
   }
-  return n += E(), n;
+  return a += T(), a;
 }
-class $ {
+function _t(r, t, e, i) {
+  let o = x(e, "black"), a = 380, s = 500, c = 520;
+  o += '<rect x="0" y="0" width="1000" height="1000" fill="url(#sky)" />', i !== void 0 && i !== 0 ? o += `
+          <g fill="white" font-size="70" font-family="sans-serif" text-anchor="middle" dominant-baseline="middle">
+          <text x="${s}" y="${c - a - 60}">${i}</text>
+        </g>
+        <g transform="rotate(${360 - i} ${s} ${c})">
+      ` : o += "<g>", o += `
+        <circle cx="${s}" cy="${c}" r="${a}" fill="none" stroke="white" stroke-width="15" />
+        <circle cx="${s}" cy="${c}" r="${a / 2}" fill="none" stroke="white" stroke-width="8" />
+        <g fill="white" font-size="70" font-family="sans-serif" text-anchor="middle" dominant-baseline="middle">
+          <text x="${s}" y="${c - a - 60}">N</text>
+        </g>
+      `;
+  for (let l of t) {
+    let u = r.getAltAzCoordinatesForObject(l);
+    if (u.latitude < 0)
+      continue;
+    let h = a * (1 - u.latitude / 90), f = (u.longitude - 90) * (Math.PI / 180), S = s + h * Math.cos(f), E = c + h * Math.sin(f);
+    o += `<g transform="translate(${S - 500}, ${E - 279})
+              translate(500, 279) scale(0.3) translate(-500, -279)">`, o += g(l), o += "</g>";
+  }
+  return o += "</g>", o += T(), o;
+}
+class N {
   constructor() {
-    this.astronomyJS = new N();
+    this.astronomyJS = new P();
   }
   getDate() {
     return this.astronomyJS.getDate();
@@ -1043,29 +1238,37 @@ class $ {
     this.astronomyJS.setLocation("Earth", t, e, 0);
   }
   static initialize(t, e) {
-    let i = new $();
+    let i = new N();
     return i.setDate(/* @__PURE__ */ new Date()), i.setLocation(t, e), i;
   }
   drawAzimuth(t, e) {
-    return ut(this.astronomyJS, t, e);
+    return xt(this.astronomyJS, t, e);
   }
   drawAltitude(t, e) {
-    return dt(this.astronomyJS, t, e);
+    return Tt(this.astronomyJS, t, e);
   }
   drawSunAltitudePath(t, e) {
-    return mt(this.astronomyJS, t, e);
+    return Et(this.astronomyJS, t, e);
   }
   drawCelestialBodyRiseTime(t, e) {
-    return bt(this.astronomyJS, t, e);
+    return Dt(this.astronomyJS, t, e);
   }
   drawCelestialBodySettingTime(t, e) {
-    return yt(this.astronomyJS, t, e);
+    return Ot(this.astronomyJS, t, e);
   }
   drawCelestialBodyVisibility(t, e) {
-    return At(this.astronomyJS, t, e);
+    return Ct(this.astronomyJS, t, e);
   }
   drawCelestialBodyVisibilityMap(t, e, i) {
-    return St(
+    return Rt(
+      this.astronomyJS,
+      t,
+      e,
+      i
+    );
+  }
+  drawMultiCelestialBodyVisibilityMap(t, e, i) {
+    return _t(
       this.astronomyJS,
       t,
       e,
@@ -1073,10 +1276,10 @@ class $ {
     );
   }
 }
-function Et(o, t) {
-  return $.initialize(o, t);
+function $t(r, t) {
+  return N.initialize(r, t);
 }
 export {
-  $ as AstronomySVG,
-  Et as initialize
+  N as AstronomySVG,
+  $t as initialize
 };

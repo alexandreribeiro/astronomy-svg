@@ -163,7 +163,7 @@
         </article>
 
         <article>
-            <header>Mars</header>
+            <header>Planets</header>
             <div class="example-tile">
                 <div class="card-image" id="drawMarsAzimuth"></div>
                 <div class="card-title">Mars Azimuth</div>
@@ -213,8 +213,28 @@
                     Sun Altitude is the angle between the Sun and the horizon.
                 </div>
             </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMultiVisibilityMapRotated"></div>
+                <div class="card-title">Multi-Planet Visibility Map (Rotated)</div>
+                <div class="card-text">
+                    Sun Altitude is the angle between the Sun and the horizon.
+                </div>
+            </div>
         </article>
     </div>
+    <article>
+        <header>Planets</header>
+        <div class="grid">
+            <div class="card-image" id="drawPlanetMercuryVisibility"></div>
+            <div class="card-image" id="drawPlanetVenusVisibility"></div>
+            <div class="card-image" id="drawPlanetMarsVisibility"></div>
+            <div class="card-image" id="drawPlanetJupiterVisibility"></div>
+            <div class="card-image" id="drawPlanetSaturnVisibility"></div>
+            <div class="card-image" id="drawPlanetUranusVisibility"></div>
+            <div class="card-image" id="drawPlanetNeptuneVisibility"></div>
+            <div class="card-image" id="drawPlanetPlutoVisibility"></div>
+        </div>
+    </article>
 </main>
 </body>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -283,9 +303,18 @@
         document.getElementById('drawMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
         document.getElementById('drawMarsVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100);
         document.getElementById('drawMarsVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100, 222);
+        document.getElementById('drawMultiVisibilityMapRotated').innerHTML =
+            astronomySVG.drawMultiCelestialBodyVisibilityMap(["Mercury", "Venus", "Mars", "Jupiter", "Saturn"], 100, 222);
         document.getElementById('drawSunVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100);
         document.getElementById('drawSunVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100, 222);
-
+        document.getElementById('drawPlanetMercuryVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mercury", 100);
+        document.getElementById('drawPlanetVenusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Venus", 100);
+        document.getElementById('drawPlanetMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
+        document.getElementById('drawPlanetJupiterVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Jupiter", 100);
+        document.getElementById('drawPlanetSaturnVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Saturn", 100);
+        document.getElementById('drawPlanetUranusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Uranus", 100);
+        document.getElementById('drawPlanetNeptuneVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Neptune", 100);
+        document.getElementById('drawPlanetPlutoVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Pluto", 100);
     }
 
     const now = new Date();
