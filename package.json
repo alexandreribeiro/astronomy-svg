@@ -40,7 +40,7 @@
     "test": "vitest --run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare-docs": "npm run build && rm -rf docs && mkdir docs && mkdir docs/dist && cp -r dist/* docs/dist/ && cp README.md docs/ && cp -r demo docs/ && cp index.js docs/ && cp lib/ docs/"
+    "prepare-docs": "npm run build && rm -rf docs && mkdir docs && mkdir docs/dist && cp -r dist/* docs/dist/ && cp README.md docs/ && cp -r demo docs/ && cp index.js docs/ && cp -r lib/ docs/"
   },
   "dependencies": {
     "astronomyjs": "^0.1.9"
