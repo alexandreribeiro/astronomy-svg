@@ -1,4 +1,4 @@
-import { AstronomyJS } from "astronomyjs";
+import { AstronomyJS } from "astronomy-js";
 import { drawAzimuth } from "./lib/azimuth.js";
 import { drawAltitude } from "./lib/altitude.js";
 import { drawSunAltitudePath } from "./lib/sun-altitude-path.js";
