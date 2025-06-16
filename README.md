@@ -17,7 +17,7 @@ These tiles were generated using the astronomy-svg library.
 
 - Visual representation of astronomical data from any location on Earth
 - Simple API to generate SVG tiles
-- Lightweight and dependency-free
+- Lightweight
 - Embeddable in websites, apps, presentations, and documents
 - 🔭 Includes Pluto!
 

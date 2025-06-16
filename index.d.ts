@@ -1,16 +1,18 @@
-import { AstronomyJS } from "astronomy-js";
-
 declare module "astronomy-svg" {
     export class AstronomySVG {
-        astronomyJS: AstronomyJS;
-
         constructor();
 
         getDate(): Date;
 
         setDate(newDate: Date): void;
 
+        setLocale(locale: string): void;
+
+        setTimezone(timezone: string): void;
+
         setLocation(latitude: number, longitude: number): void;
+
+        getLocation(): { latitude: number, longitude: number };
 
         static initialize(latitude: number, longitude: number): AstronomySVG;
 
