@@ -1,6 +1,6 @@
 {
   "name": "astronomy-svg",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Generate astronomy themed scalable vector graphics (SVG) images easily.",
   "keywords": [
     "astronomy",
@@ -44,7 +44,8 @@
     "prepare-docs": "npm run build && rm -rf docs && mkdir docs && mkdir docs/dist && cp -r dist/* docs/dist/ && cp README.md docs/readme.md && cp -r demo docs/ && cp -r images docs/"
   },
   "dependencies": {
-    "astronomy-js": "^0.1.0"
+    "astronomy-js": "^0.1.0",
+    "luxon": "^3.6.1"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

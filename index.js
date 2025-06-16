@@ -9,20 +9,43 @@ import { drawCelestialBodyVisibilityMap } from "./lib/celestial-body-visibility-
 import { drawMultiCelestialBodyVisibilityMap } from "./lib/multi-celestial-body-visibility-map.js";
 
 export class AstronomySVG {
+  applicationContext = {
+    astronomyJS: null,
+    locale: null,
+    timezone: null,
+  };
+
   constructor() {
-    this.astronomyJS = new AstronomyJS();
+    this.applicationContext.astronomyJS = new AstronomyJS();
   }
 
   getDate() {
-    return this.astronomyJS.getDate();
+    return this.applicationContext.astronomyJS.getDate();
   }
 
   setDate(newDate) {
-    this.astronomyJS.setDate(newDate);
+    this.applicationContext.astronomyJS.setDate(newDate);
+  }
+
+  setLocale(locale) {
+    this.applicationContext.locale = locale;
+  }
+
+  setTimezone(timezone) {
+    this.applicationContext.timezone = timezone;
   }
 
   setLocation(latitude, longitude) {
-    this.astronomyJS.setLocation("Earth", latitude, longitude, 0);
+    this.applicationContext.astronomyJS.setLocation(
+      "Earth",
+      latitude,
+      longitude,
+      0,
+    );
+  }
+
+  getLocation() {
+    return this.applicationContext.astronomyJS.getLatitudeLongitudeCoordinates();
   }
 
   static initialize(latitude, longitude) {
@@ -33,32 +56,44 @@ export class AstronomySVG {
   }
 
   drawAzimuth(celestialBody, width) {
-    return drawAzimuth(this.astronomyJS, celestialBody, width);
+    return drawAzimuth(this.applicationContext, celestialBody, width);
   }
 
   drawAltitude(celestialBody, width) {
-    return drawAltitude(this.astronomyJS, celestialBody, width);
+    return drawAltitude(this.applicationContext, celestialBody, width);
   }
 
   drawSunAltitudePath(width, isRectangular) {
-    return drawSunAltitudePath(this.astronomyJS, width, isRectangular);
+    return drawSunAltitudePath(this.applicationContext, width, isRectangular);
   }
 
   drawCelestialBodyRiseTime(celestialBody, width) {
-    return drawCelestialBodyRiseTime(this.astronomyJS, celestialBody, width);
+    return drawCelestialBodyRiseTime(
+      this.applicationContext,
+      celestialBody,
+      width,
+    );
   }
 
   drawCelestialBodySettingTime(celestialBody, width) {
-    return drawCelestialBodySettingTime(this.astronomyJS, celestialBody, width);
+    return drawCelestialBodySettingTime(
+      this.applicationContext,
+      celestialBody,
+      width,
+    );
   }
 
   drawCelestialBodyVisibility(celestialBody, width) {
-    return drawCelestialBodyVisibility(this.astronomyJS, celestialBody, width);
+    return drawCelestialBodyVisibility(
+      this.applicationContext,
+      celestialBody,
+      width,
+    );
   }
 
   drawCelestialBodyVisibilityMap(celestialBody, width, azimuthReference) {
     return drawCelestialBodyVisibilityMap(
-      this.astronomyJS,
+      this.applicationContext,
       celestialBody,
       width,
       azimuthReference,
@@ -71,7 +106,7 @@ export class AstronomySVG {
     azimuthReference,
   ) {
     return drawMultiCelestialBodyVisibilityMap(
-      this.astronomyJS,
+      this.applicationContext,
       celestialBodyList,
       width,
       azimuthReference,

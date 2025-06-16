@@ -235,20 +235,30 @@
             <div class="card-image" id="drawPlanetPlutoVisibility"></div>
         </div>
     </article>
+    <article>
+        <header>Timezone and Locale</header>
+        <div class="example-tile">
+            <div class="card-image" id="drawSunAltitudePathRectangularTokyo"></div>
+            <div class="card-title">Sun Altitude Path (Wide)</div>
+            <div class="card-text">
+                This is Tokyo's Sun altitude path with display corrected to Tokyo's timezone.
+            </div>
+        </div>
+    </article>
 </main>
 </body>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script type="module">
     import {AstronomySVG} from "../dist/astronomy-svg.es.js";
 
-    const initialLatitude = 59.4;
-    const initialLongitude = 18.0;
-    let astronomySVG = AstronomySVG.initialize(initialLatitude, initialLongitude);
+    const stockholmLocation = {"latitude": 59.333333, "longitude": 18.05};
+    const tokyoLocation = {"latitude": 35.689487, "longitude": 139.691706};
+    let astronomySVG = AstronomySVG.initialize(stockholmLocation.latitude, stockholmLocation.longitude);
 
     const latitudeInput = document.getElementById('latitudeInput');
     const longitudeInput = document.getElementById('longitudeInput');
-    latitudeInput.value = initialLatitude;
-    longitudeInput.value = initialLongitude;
+    latitudeInput.value = stockholmLocation.latitude;
+    longitudeInput.value = stockholmLocation.longitude;
     latitudeInput.addEventListener('input', onLocationChange);
     longitudeInput.addEventListener('input', onLocationChange);
 
@@ -258,13 +268,13 @@
         onLocationChange();
     }
 
-    const map = L.map('map').setView([initialLatitude, initialLongitude], 13);
+    const map = L.map('map').setView([stockholmLocation.latitude, stockholmLocation.longitude], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    const marker = L.marker([initialLatitude, initialLongitude], {draggable: true}).addTo(map);
+    const marker = L.marker([stockholmLocation.latitude, stockholmLocation.longitude], {draggable: true}).addTo(map);
 
     marker.on('dragend', function (_) {
         const {lat, lng} = marker.getLatLng();
@@ -289,6 +299,7 @@
     }
 
     function updateAllTilesWithTime(referenceDate) {
+        let originalLocation = astronomySVG.getLocation();
         astronomySVG.setDate(referenceDate);
         document.getElementById('drawSunAzimuth').innerHTML = astronomySVG.drawAzimuth("Sun", 100);
         document.getElementById('drawSunAltitude').innerHTML = astronomySVG.drawAltitude("Sun", 100);
@@ -315,6 +326,13 @@
         document.getElementById('drawPlanetUranusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Uranus", 100);
         document.getElementById('drawPlanetNeptuneVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Neptune", 100);
         document.getElementById('drawPlanetPlutoVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Pluto", 100);
+        astronomySVG.setLocation(tokyoLocation.latitude, tokyoLocation.longitude);
+        astronomySVG.setLocale("ja-JP");
+        astronomySVG.setTimezone("Asia/Tokyo");
+        document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        astronomySVG.setLocation(originalLocation.latitude, originalLocation.longitude);
+        astronomySVG.setLocale(null);
+        astronomySVG.setTimezone(null);
     }
 
     const now = new Date();
