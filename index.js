@@ -63,8 +63,13 @@ export class AstronomySVG {
     return drawAltitude(this.applicationContext, celestialBody, width);
   }
 
-  drawSunAltitudePath(width, isRectangular) {
-    return drawSunAltitudePath(this.applicationContext, width, isRectangular);
+  drawSunAltitudePath(width, isRectangular, shouldDrawTime = false) {
+    return drawSunAltitudePath(
+      this.applicationContext,
+      width,
+      isRectangular,
+      shouldDrawTime,
+    );
   }
 
   drawCelestialBodyRiseTime(celestialBody, width) {

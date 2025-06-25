@@ -329,7 +329,7 @@
         astronomySVG.setLocation(tokyoLocation.latitude, tokyoLocation.longitude);
         astronomySVG.setLocale("ja-JP");
         astronomySVG.setTimezone("Asia/Tokyo");
-        document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true, true);
         astronomySVG.setLocation(originalLocation.latitude, originalLocation.longitude);
         astronomySVG.setLocale(null);
         astronomySVG.setTimezone(null);
