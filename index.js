@@ -7,6 +7,7 @@ import { drawCelestialBodySettingTime } from "./lib/celestial-body-set-time.js";
 import { drawCelestialBodyVisibility } from "./lib/celestial-body-visibility.js";
 import { drawCelestialBodyVisibilityMap } from "./lib/celestial-body-visibility-map.js";
 import { drawMultiCelestialBodyVisibilityMap } from "./lib/multi-celestial-body-visibility-map.js";
+import { drawCurrentTime } from "./lib/draw-current-time.js";
 
 export class AstronomySVG {
   applicationContext = {
@@ -94,6 +95,10 @@ export class AstronomySVG {
       celestialBody,
       width,
     );
+  }
+
+  drawCurrentTime(width) {
+    return drawCurrentTime(this.applicationContext, width);
   }
 
   drawCelestialBodyVisibilityMap(celestialBody, width, azimuthReference) {
