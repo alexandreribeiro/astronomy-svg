@@ -244,6 +244,13 @@
                 This is Tokyo's Sun altitude path with display corrected to Tokyo's timezone.
             </div>
         </div>
+        <div class="example-tile">
+            <div class="card-image" id="drawCurrentTimeTokyo"></div>
+            <div class="card-title">Current Time</div>
+            <div class="card-text">
+                This is Tokyo's current time.
+            </div>
+        </div>
     </article>
 </main>
 </body>
@@ -329,7 +336,8 @@
         astronomySVG.setLocation(tokyoLocation.latitude, tokyoLocation.longitude);
         astronomySVG.setLocale("ja-JP");
         astronomySVG.setTimezone("Asia/Tokyo");
-        document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true, true);
+        document.getElementById('drawCurrentTimeTokyo').innerHTML = astronomySVG.drawCurrentTime(100);
         astronomySVG.setLocation(originalLocation.latitude, originalLocation.longitude);
         astronomySVG.setLocale(null);
         astronomySVG.setTimezone(null);
