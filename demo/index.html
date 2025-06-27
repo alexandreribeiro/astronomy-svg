@@ -251,6 +251,14 @@
                 This is Tokyo's current time.
             </div>
         </div>
+
+        <div class="example-tile">
+            <div class="card-image" id="drawCurrentTimeWideTokyo"></div>
+            <div class="card-title">Current Time (Wide)</div>
+            <div class="card-text">
+                This is Tokyo's current time, with a wide display.
+            </div>
+        </div>
     </article>
 </main>
 </body>
@@ -338,6 +346,7 @@
         astronomySVG.setTimezone("Asia/Tokyo");
         document.getElementById('drawSunAltitudePathRectangularTokyo').innerHTML = astronomySVG.drawSunAltitudePath(200, true, true);
         document.getElementById('drawCurrentTimeTokyo').innerHTML = astronomySVG.drawCurrentTime(100);
+        document.getElementById('drawCurrentTimeWideTokyo').innerHTML = astronomySVG.drawCurrentTimeWide(200);
         astronomySVG.setLocation(originalLocation.latitude, originalLocation.longitude);
         astronomySVG.setLocale(null);
         astronomySVG.setTimezone(null);
