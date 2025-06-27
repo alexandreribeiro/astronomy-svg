@@ -963,8 +963,8 @@ function hr(r, e) {
 function mr(r) {
   return `${r.toFixed(1)} ${Yn(r)}`;
 }
-function De(r, e, t) {
-  return `<text x="${e}" y="${t}" font-size="139" text-anchor="middle"
+function De(r, e, t, n = "middle", s = 139) {
+  return `<text x="${e}" y="${t}" font-size="${s}" text-anchor="${n}"
               fill="white" font-family="Verdana" dominant-baseline="middle">
         ${r}
         </text>`;
@@ -976,7 +976,7 @@ function te(r) {
   return De(r, 500, 833);
 }
 function qn(r) {
-  return De(r, 50, 150);
+  return De(r, 50, 150, "start");
 }
 function Bn(r, e, t) {
   let s = r.astronomyJS.getAltAzCoordinatesForObject(e).longitude, i = j(t, "black");
@@ -6704,7 +6704,7 @@ function ua(r, e) {
       ...r.timezone ? { timeZone: r.timezone } : {}
     }),
     1500,
-    400
+    420
   ), s += De(
     n.toLocaleTimeString(r.locale ?? void 0, {
       hour: "2-digit",
@@ -6713,7 +6713,7 @@ function ua(r, e) {
       ...r.timezone ? { timeZone: r.timezone } : {}
     }),
     1500,
-    600
+    620
   ), s += P(), s;
 }
 function Tn(r) {
