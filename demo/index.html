@@ -236,6 +236,12 @@
         </div>
     </article>
     <article>
+        <header>Moon</header>
+        <div class="grid">
+            <div class="card-image" id="drawMoonVisibility"></div>
+        </div>
+    </article>
+    <article>
         <header>Timezone and Locale</header>
         <div class="example-tile">
             <div class="card-image" id="drawSunAltitudePathRectangularTokyo"></div>
@@ -333,6 +339,7 @@
             astronomySVG.drawMultiCelestialBodyVisibilityMap(["Mercury", "Venus", "Mars", "Jupiter", "Saturn"], 100, 222);
         document.getElementById('drawSunVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100);
         document.getElementById('drawSunVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100, 222);
+        document.getElementById('drawMoonVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Moon", 100);
         document.getElementById('drawPlanetMercuryVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mercury", 100);
         document.getElementById('drawPlanetVenusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Venus", 100);
         document.getElementById('drawPlanetMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
