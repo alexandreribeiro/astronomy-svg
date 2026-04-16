@@ -238,7 +238,21 @@
     <article>
         <header>Moon</header>
         <div class="grid">
+            <div class="card-image" id=""></div>
+        </div>
+        <div class="example-tile">
             <div class="card-image" id="drawMoonVisibility"></div>
+            <div class="card-title">Moon Visibility</div>
+            <div class="card-text">
+                Moon phase and visibility.
+            </div>
+        </div>
+        <div class="example-tile">
+            <div class="card-image" id="drawMoonAltitudePathRectangular"></div>
+            <div class="card-title">Moon Altitude Path (Wide)</div>
+            <div class="card-text">
+                Wide version of Moon Altitude Path (twice as wide as the square version).
+            </div>
         </div>
     </article>
     <article>
@@ -326,6 +340,7 @@
         document.getElementById('drawSunAltitude').innerHTML = astronomySVG.drawAltitude("Sun", 100);
         document.getElementById('drawSunAltitudePathSquare').innerHTML = astronomySVG.drawSunAltitudePath(100, false);
         document.getElementById('drawSunAltitudePathRectangular').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        document.getElementById('drawMoonAltitudePathRectangular').innerHTML = astronomySVG.drawMoonAltitudePath(200, true);
         document.getElementById('drawMarsAzimuth').innerHTML = astronomySVG.drawAzimuth("Mars", 100);
         document.getElementById('drawMarsAltitude').innerHTML = astronomySVG.drawAltitude("Mars", 100);
         document.getElementById('drawSunSettingTime').innerHTML = astronomySVG.drawCelestialBodySettingTime("Sun", 100);

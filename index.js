@@ -2,6 +2,7 @@ import { AstronomyJS } from "astronomy-js";
 import { drawAzimuth } from "./lib/azimuth.js";
 import { drawAltitude } from "./lib/altitude.js";
 import { drawSunAltitudePath } from "./lib/sun-altitude-path.js";
+import { drawMoonAltitudePath } from "./lib/moon-altitude-path.js";
 import { drawCelestialBodyRiseTime } from "./lib/celestial-body-rise-time.js";
 import { drawCelestialBodySettingTime } from "./lib/celestial-body-set-time.js";
 import { drawCelestialBodyVisibility } from "./lib/celestial-body-visibility.js";
@@ -73,6 +74,15 @@ export class AstronomySVG {
       width,
       isRectangular,
       shouldDrawTime,
+    );
+  }
+
+  drawMoonAltitudePath(width, isRectangular, shouldDrawTime = false) {
+    return drawMoonAltitudePath(
+        this.applicationContext,
+        width,
+        isRectangular,
+        shouldDrawTime,
     );
   }
 
