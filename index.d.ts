@@ -22,7 +22,7 @@ declare module "astronomy-svg" {
 
         drawSunAltitudePath(width: number, isRectangular?: boolean, shouldDrawTime?: boolean): string;
 
-        drawMoonAltitudePath(width: number, isRectangular?: boolean, shouldDrawTime?: boolean): string;
+        drawCelestialBodyAltitudePath(celestialBody: string, width: number, isRectangular?: boolean, shouldDrawTime?: boolean): string;
 
         drawCelestialBodyRiseTime(celestialBody: string, width: number): string;
 
