@@ -77,13 +77,18 @@ export class AstronomySVG {
     );
   }
 
-  drawCelestialBodyAltitudePath(celestialBody, width, isRectangular, shouldDrawTime = false) {
+  drawCelestialBodyAltitudePath(
+    celestialBody,
+    width,
+    isRectangular,
+    shouldDrawTime = false,
+  ) {
     return drawCelestialBodyAltitudePath(
-        this.applicationContext,
-        celestialBody,
-        width,
-        isRectangular,
-        shouldDrawTime,
+      this.applicationContext,
+      celestialBody,
+      width,
+      isRectangular,
+      shouldDrawTime,
     );
   }
 
