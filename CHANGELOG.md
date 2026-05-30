@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres
+to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.1.13] - 2026-05-30
+
+### Changed
+
+- Fix a bug where the Sun in the solar system altitude path was shining below
+  the horizon.
 
 ## [0.1.12] - 2026-04-26
 
@@ -15,13 +23,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Breaking:** Changed `drawMoonAltitudePath` to `drawCelestialBodyAltitudePath`, accepting any celestial body to draw the path for.
+- **Breaking:** Changed `drawMoonAltitudePath` to
+  `drawCelestialBodyAltitudePath`, accepting any celestial body to draw the path
+  for.
 
 ## [0.1.10] - 2026-04-16
 
 ### Added
 
-- Added `drawMoonAltitudePath` function to draw the Moon's altitude path similar to the Sun's.
+- Added `drawMoonAltitudePath` function to draw the Moon's altitude path similar
+  to the Sun's.
 
 [0.1.11]: https://www.npmjs.com/package/astronomy-svg/v/0.1.11
 
