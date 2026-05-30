@@ -5165,7 +5165,7 @@ function Ca(e, t, n, r) {
             </linearGradient>
         </defs>
         <rect x="0" y="0" width="${c}" height="500" fill="url(#sky-${d})" />
-        <ellipse cx="${Ea(o, c)}" cy="${f}" rx="${1.2 * c}" ry="125" fill="url(#twilight-glow-${d})" />
+        <ellipse cx="${Ea(o, c)}" cy="${f}" rx="${1.2 * c}" ry="125" fill="url(#twilight-glow-${d})" clip-path="url(#bottom-half-clip)" />
         <rect x="0" y="500" width="${c}" height="500" fill="black" />
         <polyline fill="none" stroke="url(#sun-line-gradient-${d})" stroke-width="35" points="${u}" clip-path="url(#top-half-clip)"/>
         <polyline fill="none" stroke="url(#sun-line-gradient-${d})" stroke-width="35" points="${u}" clip-path="url(#bottom-half-clip)"/>
@@ -5281,7 +5281,7 @@ function Oa(e, t, n, r, i) {
             </linearGradient>
         </defs>
         <rect x="0" y="0" width="${c}" height="500" fill="url(#sky-${_})" />
-        <ellipse cx="${ja(v, c, p)}" cy="${x}" rx="${1.2 * c}" ry="125" fill="url(#twilight-glow-${_})" />
+        <ellipse cx="${ja(v, c, p)}" cy="${x}" rx="${1.2 * c}" ry="125" fill="url(#twilight-glow-${_})" clip-path="url(#bottom-half-clip)" />
         ${m.map((e) => `
             <polyline fill="none" stroke="url(#sun-line-gradient-${_})" stroke-width="35" points="${e}" clip-path="url(#top-half-clip)"/>
             <polyline fill="none" stroke="url(#sun-line-gradient-${_})" stroke-width="35" points="${e}" clip-path="url(#bottom-half-clip)"/>
