@@ -175,21 +175,21 @@
                 <div class="card-image" id="drawMarsAltitude"></div>
                 <div class="card-title">Mars Altitude</div>
                 <div class="card-text">
-                    Sun Altitude is the angle between the Sun and the horizon.
+                    Mars Altitude is the angle between Mars and the horizon.
                 </div>
             </div>
             <div class="example-tile">
                 <div class="card-image" id="drawMarsRiseTime"></div>
                 <div class="card-title">Mars Rise</div>
                 <div class="card-text">
-                    Sun Altitude is the angle between the Sun and the horizon.
+                    The time when Mars rises in the horizon.
                 </div>
             </div>
             <div class="example-tile">
                 <div class="card-image" id="drawMarsSettingTime"></div>
                 <div class="card-title">Mars Set</div>
                 <div class="card-text">
-                    Sun Altitude is the angle between the Sun and the horizon.
+                    The time when Mars sets in the horizon.
                 </div>
             </div>
             <div class="example-tile">
@@ -220,6 +220,13 @@
                     Sun Altitude is the angle between the Sun and the horizon.
                 </div>
             </div>
+            <div class="example-tile">
+                <div class="card-image" id="drawMarsAltitudePathRectangular"></div>
+                <div class="card-title">Mars Altitude Path (Wide)</div>
+                <div class="card-text">
+                    Wide version of Mars Altitude Path (twice as wide as the square version).
+                </div>
+            </div>
         </article>
     </div>
     <article>
@@ -233,6 +240,26 @@
             <div class="card-image" id="drawPlanetUranusVisibility"></div>
             <div class="card-image" id="drawPlanetNeptuneVisibility"></div>
             <div class="card-image" id="drawPlanetPlutoVisibility"></div>
+        </div>
+    </article>
+    <article>
+        <header>Moon</header>
+        <div class="grid">
+            <div class="card-image" id=""></div>
+        </div>
+        <div class="example-tile">
+            <div class="card-image" id="drawMoonVisibility"></div>
+            <div class="card-title">Moon Visibility</div>
+            <div class="card-text">
+                Moon phase and visibility.
+            </div>
+        </div>
+        <div class="example-tile">
+            <div class="card-image" id="drawMoonAltitudePathRectangular"></div>
+            <div class="card-title">Moon Altitude Path (Wide)</div>
+            <div class="card-text">
+                Wide version of Moon Altitude Path (twice as wide as the square version).
+            </div>
         </div>
     </article>
     <article>
@@ -320,6 +347,8 @@
         document.getElementById('drawSunAltitude').innerHTML = astronomySVG.drawAltitude("Sun", 100);
         document.getElementById('drawSunAltitudePathSquare').innerHTML = astronomySVG.drawSunAltitudePath(100, false);
         document.getElementById('drawSunAltitudePathRectangular').innerHTML = astronomySVG.drawSunAltitudePath(200, true);
+        document.getElementById('drawMoonAltitudePathRectangular').innerHTML = astronomySVG.drawCelestialBodyAltitudePath("Moon", 200, true);
+        document.getElementById('drawMarsAltitudePathRectangular').innerHTML = astronomySVG.drawCelestialBodyAltitudePath("Mars", 200, true);
         document.getElementById('drawMarsAzimuth').innerHTML = astronomySVG.drawAzimuth("Mars", 100);
         document.getElementById('drawMarsAltitude').innerHTML = astronomySVG.drawAltitude("Mars", 100);
         document.getElementById('drawSunSettingTime').innerHTML = astronomySVG.drawCelestialBodySettingTime("Sun", 100);
@@ -330,9 +359,10 @@
         document.getElementById('drawMarsVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100);
         document.getElementById('drawMarsVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Mars", 100, 222);
         document.getElementById('drawMultiVisibilityMapRotated').innerHTML =
-            astronomySVG.drawMultiCelestialBodyVisibilityMap(["Mercury", "Venus", "Mars", "Jupiter", "Saturn"], 100, 222);
+            astronomySVG.drawMultiCelestialBodyVisibilityMap(["Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Moon"], 100, 222);
         document.getElementById('drawSunVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100);
         document.getElementById('drawSunVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100, 222);
+        document.getElementById('drawMoonVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Moon", 100);
         document.getElementById('drawPlanetMercuryVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mercury", 100);
         document.getElementById('drawPlanetVenusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Venus", 100);
         document.getElementById('drawPlanetMarsVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mars", 100);
