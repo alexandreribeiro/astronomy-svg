@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { drawCelestialBodyAltitudePath } from "./celestial-body-altitude-path.js";
-import { drawSunAltitudePath } from "./sun-altitude-path.js";
+import { drawCelestialBodyAltitudePath } from "../lib/celestial-body-altitude-path.js";
+import { drawSunAltitudePath } from "../lib/sun-altitude-path.js";
 
 function createApplicationContext() {
   const now = new Date("2026-05-30T12:00:00Z");

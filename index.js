@@ -8,6 +8,7 @@ import { drawCelestialBodySettingTime } from "./lib/celestial-body-set-time.js";
 import { drawCelestialBodyVisibility } from "./lib/celestial-body-visibility.js";
 import { drawCelestialBodyVisibilityMap } from "./lib/celestial-body-visibility-map.js";
 import { drawMultiCelestialBodyVisibilityMap } from "./lib/multi-celestial-body-visibility-map.js";
+import { drawMoonPhase } from "./lib/moon-phase.js";
 import {
   drawCurrentTime,
   drawCurrentTimeWide,
@@ -114,6 +115,10 @@ export class AstronomySVG {
       celestialBody,
       width,
     );
+  }
+
+  drawMoonPhase(width) {
+    return drawMoonPhase(this.applicationContext, width);
   }
 
   drawCurrentTime(width) {

@@ -248,6 +248,13 @@
             <div class="card-image" id=""></div>
         </div>
         <div class="example-tile">
+            <div class="card-image" id="drawMoonPhase"></div>
+            <div class="card-title">Moon Phase</div>
+            <div class="card-text">
+                Current Moon phase, illuminated percentage, and whether illumination is increasing or decreasing.
+            </div>
+        </div>
+        <div class="example-tile">
             <div class="card-image" id="drawMoonVisibility"></div>
             <div class="card-title">Moon Visibility</div>
             <div class="card-text">
@@ -362,6 +369,7 @@
             astronomySVG.drawMultiCelestialBodyVisibilityMap(["Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Moon"], 100, 222);
         document.getElementById('drawSunVisibilityMap').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100);
         document.getElementById('drawSunVisibilityMapRotated').innerHTML = astronomySVG.drawCelestialBodyVisibilityMap("Sun", 100, 222);
+        document.getElementById('drawMoonPhase').innerHTML = astronomySVG.drawMoonPhase(100);
         document.getElementById('drawMoonVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Moon", 100);
         document.getElementById('drawPlanetMercuryVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Mercury", 100);
         document.getElementById('drawPlanetVenusVisibility').innerHTML = astronomySVG.drawCelestialBodyVisibility("Venus", 100);

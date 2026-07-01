@@ -30,6 +30,8 @@ declare module "astronomy-svg" {
 
         drawCelestialBodyVisibility(celestialBody: string, width: number): string;
 
+        drawMoonPhase(width: number): string;
+
         drawCurrentTime(width: number): string;
 
         drawCurrentTimeWide(width: number): string;
